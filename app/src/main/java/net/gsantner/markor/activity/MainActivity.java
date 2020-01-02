@@ -52,7 +52,7 @@ import net.gsantner.opoc.format.markdown.SimpleMarkdownParser;
 import net.gsantner.opoc.ui.FilesystemViewerAdapter;
 import net.gsantner.opoc.ui.FilesystemViewerData;
 import net.gsantner.opoc.ui.FilesystemViewerFragment;
-import net.gsantner.opoc.util.AndroidSupportMeWrapper;
+//import net.gsantner.opoc.util.AndroidSupportMeWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -199,7 +199,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
 
     @Override
     protected void onResume() {
-        new AndroidSupportMeWrapper(this).mainOnResume();
+//        new AndroidSupportMeWrapper(this).mainOnResume();
         super.onResume();
         IS_DEBUG_ENABLED = BuildConfig.IS_TEST_BUILD || _appSettings.isDebugLogEnabled();
         if (_appSettings.isRecreateMainRequired()) {

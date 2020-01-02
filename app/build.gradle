@@ -19,15 +19,34 @@ rootProject.ext.version_minSdk = 16
 // https://github.com/vsch/flexmark-java/releases
 ext.version_library_flexmark = "0.42.10"
 
+
+static def releaseTime() {
+    return new Date().format("yy.MMddHH", TimeZone.getTimeZone("GMT+8"))
+}
+
+def name = "Markor"
+def version = "9." + releaseTime()
+def gitCommits = Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim())
+
+
 android {
+
+
     buildToolsVersion rootProject.ext.version_buildTools
     compileSdkVersion rootProject.ext.version_compileSdk
-
+    signingConfigs {
+        myConfig {
+            storeFile file(RELEASE_STORE_FILE)
+            storePassword RELEASE_KEY_PASSWORD
+            keyAlias RELEASE_KEY_ALIAS
+            keyPassword RELEASE_STORE_PASSWORD
+        }
+    }
     defaultConfig {
         resValue "string", "manifest_package_id", "net.gsantner.markor"
         applicationId "net.gsantner.markor"
-        versionName "2.2.4"
-        versionCode 106
+        versionName "9.2.4"
+        versionCode 906
 
         minSdkVersion rootProject.ext.version_minSdk
         targetSdkVersion rootProject.ext.version_compileSdk
@@ -37,22 +56,23 @@ android {
         buildConfigField "String", "BUILD_DATE", "\"${getBuildDate()}\""
         buildConfigField "String", "GITHASH", "\"${getGitHash()}\""
         setProperty("archivesBaseName", applicationId + "-v" + versionCode + "-" + versionName)
-    }
-
-    flavorDimensions "default"
-    productFlavors {
-        flavorAtest {
-            applicationId "net.gsantner.markor_test"
+        applicationId "net.gsantner.markor_test"
             versionCode = Integer.parseInt(new Date().format('yyMMdd'))
             versionName = new Date().format('yyMMdd')
             buildConfigField "boolean", "IS_TEST_BUILD", "true"
-        }
-        flavorDefault {
-        }
-        flavorGplay {
-            buildConfigField "boolean", "IS_GPLAY_BUILD", "true"
-        }
+
     }
+
+//    flavorDimensions "default"
+//    productFlavors {
+//        flavorAtest {
+//            applicationId "net.gsantner.markor_test"
+//            versionCode = Integer.parseInt(new Date().format('yyMMdd'))
+//            versionName = new Date().format('yyMMdd')
+//            buildConfigField "boolean", "IS_TEST_BUILD", "true"
+//        }
+//
+//    }
 
     sourceSets {
         main { assets.srcDirs = ['src/main/assets'] }
@@ -64,10 +84,25 @@ android {
         main.assets.srcDirs += 'thirdparty/assets'
     }
 
+
+
     buildTypes {
         release {
+            signingConfig signingConfigs.myConfig
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            signingConfig signingConfigs.myConfig
+            applicationIdSuffix '.debug'
+            versionNameSuffix 'debug'
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        android.applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "${name}_${defaultConfig.versionName}_${buildType.name}.apk"
+            }
         }
     }
 
@@ -100,6 +135,8 @@ android {
         disable 'InvalidPackage'
         abortOnError false
     }
+
+
 }
 
 dependencies {
