@@ -377,12 +377,12 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                 _toolbar.setTitle(R.string.quicknote);
                 return true;
             }
-            case R.id.nav_more: {
-                restoreDefaultToolbar();
-                _viewPager.setCurrentItem(3);
-                _toolbar.setTitle(R.string.more);
-                return true;
-            }
+//            case R.id.nav_more: {
+//                restoreDefaultToolbar();
+//                _viewPager.setCurrentItem(3);
+//                _toolbar.setTitle(R.string.more);
+//                return true;
+//            }
         }
         return false;
     }
@@ -402,9 +402,9 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         (_lastBottomMenuItem != null ? _lastBottomMenuItem : menu.getItem(0)).setChecked(false);
         _lastBottomMenuItem = menu.getItem(pos).setChecked(true);
         updateFabVisibility(pos == 0);
-        _toolbar.setTitle(new String[]{_cachedFolderTitle, getString(R.string.todo), getString(R.string.quicknote), getString(R.string.more)}[pos]);
+        _toolbar.setTitle(new String[]{_cachedFolderTitle, getString(R.string.todo), getString(R.string.quicknote), }[pos]);
 
-        if (pos > 0 && pos < 3) {
+        if (pos > 0 && pos < 2) {
             permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
         }
     }
@@ -483,12 +483,12 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                     }
                     break;
                 }
-                case R.id.nav_more: {
-                    if (fragment == null) {
-                        fragment = MoreFragment.newInstance();
-                    }
-                    break;
-                }
+//                case R.id.nav_more: {
+//                    if (fragment == null) {
+//                        fragment = MoreFragment.newInstance();
+//                    }
+//                    break;
+//                }
             }
 
             _fragCache.put(pos, fragment);
