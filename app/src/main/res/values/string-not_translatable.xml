@@ -22,6 +22,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="more_info_on_how_to_donate_or_otherwise_support_this_project" translatable="false">@string/more_info_on_how_to_donate_or_otherwise_support_this_project_text</string>
     <string name="donate_" translatable="false">@string/donate</string>
     <string name="app_contact_email_reverse" translatable="false">gro.xobliam@kcabdeef+rentnasg</string>
+    <string name="huuid">hUUID</string>
 
 
     <string name="checkmark_symbol" translatable="false">\u2301</string>
@@ -172,6 +173,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="pref_key__editor_textaction_bar_item_padding" translatable="false">pref_key__editor_textaction_bar_item_padding</string>
     <string name="pref_key__editor_disable_spelling_red_underline" translatable="false">pref_key__editor_disable_spelling_red_underline</string>
     <string name="pref_key__editor_markdown_bigger_headings_2" translatable="false">pref_key__editor_markdown_bigger_headings_2</string>
+    <string name="pref_key__editor_unordered_list_character" translatable="false">pref_key__editor_unordered_list_character</string>
     <string name="pref_key__recent_documents" translatable="false">pref_key__recent_documents</string>
     <string name="pref_key__popular_documents" translatable="false">pref_key__popular_documents</string>
     <string name="pref_key__favourite_files" translatable="false">pref_key__favourite_files</string>
@@ -196,7 +198,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
 
     <string name="tmaid_common_delete_lines" translatable="false">tmaid_common_delete_lines</string>
     <string name="tmaid_common_attach_something" translatable="false">tmaid_common_attach_something</string>
-    <string name="tmaid_common_unordered_list_hyphen" translatable="false">tmaid_common_unordered_list_hyphen</string>
+    <string name="tmaid_common_unordered_list_char" translatable="false">tmaid_common_unordered_list_char</string>
     <string name="tmaid_common_ordered_list_number" translatable="false">tmaid_common_ordered_list_number</string>
     <string name="tmaid_common_checkbox_list" translatable="false">tmaid_common_checkbox_list</string>
     <string name="tmaid_common_special_key" translatable="false">tmaid_common_special_key</string>
@@ -244,6 +246,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="pref_key__is_debug_log_enabled" translatable="false">pref_key__is_debug_log_enabled</string>
     <string name="pref_key__view_font_size" translatable="false">pref_key__view_font_size</string>
     <string name="pref_key__view_mode_link_color" translatable="false">pref_key__view_mode_link_color</string>
+    <string name="pref_key__todotxt__start_new_tasks_with_huuid" translatable="false">pref_key__todotxt__start_new_tasks_with_huuid</string>
     <string name="features" translatable="false">Features</string>
     <string name="file_template__md_markor_markdown_reference" translatable="false">markor-markdown-reference.md</string>
     <string name="file_template__md_jekyll_post" translatable="false">2029-01-01-jekyll-post.md</string>

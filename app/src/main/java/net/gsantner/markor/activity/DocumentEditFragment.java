@@ -142,6 +142,7 @@ public class DocumentEditFragment extends GsFragmentBase implements TextFormat.T
         webSettings.setDatabaseEnabled(true);
         webSettings.setGeolocationEnabled(false);
         webSettings.setJavaScriptEnabled(true);
+        webSettings.setDomStorageEnabled(true);
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && BuildConfig.IS_TEST_BUILD) {
             WebView.setWebContentsDebuggingEnabled(true);
@@ -541,7 +542,7 @@ public class DocumentEditFragment extends GsFragmentBase implements TextFormat.T
         } else if (!_isPreviewVisible && preview) {
             setDocumentViewVisibility(true);
             return true;
-        } else if (!_menuSearchViewForViewMode.isIconified()) {
+        } else if (_menuSearchViewForViewMode != null && !_menuSearchViewForViewMode.isIconified()) {
             _menuSearchViewForViewMode.clearFocus();
             return true;
         }

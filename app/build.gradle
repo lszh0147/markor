@@ -30,8 +30,6 @@ def gitCommits = Integer.parseInt('git rev-list --count HEAD'.execute([], projec
 
 
 android {
-
-
     buildToolsVersion rootProject.ext.version_buildTools
     compileSdkVersion rootProject.ext.version_compileSdk
     signingConfigs {
@@ -45,8 +43,8 @@ android {
     defaultConfig {
         resValue "string", "manifest_package_id", "net.gsantner.markor"
         applicationId "net.gsantner.markor"
-        versionName "9.2.4"
-        versionCode 906
+        versionName "2.2.7"
+        versionCode 110
 
         minSdkVersion rootProject.ext.version_minSdk
         targetSdkVersion rootProject.ext.version_compileSdk
@@ -63,17 +61,6 @@ android {
 
     }
 
-//    flavorDimensions "default"
-//    productFlavors {
-//        flavorAtest {
-//            applicationId "net.gsantner.markor_test"
-//            versionCode = Integer.parseInt(new Date().format('yyMMdd'))
-//            versionName = new Date().format('yyMMdd')
-//            buildConfigField "boolean", "IS_TEST_BUILD", "true"
-//        }
-//
-//    }
-
     sourceSets {
         main { assets.srcDirs = ['src/main/assets'] }
         if (enable_plugin_kotlin) {
@@ -83,8 +70,6 @@ android {
         main.res.srcDirs += 'thirdparty/res'
         main.assets.srcDirs += 'thirdparty/assets'
     }
-
-
 
     buildTypes {
         release {
@@ -135,13 +120,11 @@ android {
         disable 'InvalidPackage'
         abortOnError false
     }
-
-
 }
 
 dependencies {
     // Testing
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     testImplementation 'org.assertj:assertj-core:3.13.1'
 
     // Android standard libs

@@ -75,7 +75,7 @@
                 android:summary="@string/highlighting_enabled_or_not__appspecific"
                 android:title="@string/syntax_highlighting" />
             <CheckBoxPreference
-                android:defaultValue="true"
+                android:defaultValue="false"
                 android:icon="@drawable/ic_widgets_black_24dp"
                 android:key="@string/pref_key__is_launcher_for_special_files_enabled"
                 android:title="@string/special_documents" />
@@ -287,6 +287,15 @@
                 android:key="@string/pref_key__editor_start_editing_on_bottom"
                 android:summary="@string/start_on_bottom_when_loading_document"
                 android:title="@string/start_on_bottom" />
+            <ListPreference
+                android:defaultValue="-"
+                android:dialogTitle="@string/theme"
+                android:entries="@array/pref_arrdisp__unordered_list_character"
+                android:entryValues="@array/pref_arrkeys__unordered_list_character"
+                android:icon="@drawable/ic_list_black_24dp"
+                android:key="@string/pref_key__editor_unordered_list_character"
+                android:summary="@string/character_to_start_items_of_unordered_list_with"
+                android:title="@string/unordered_list_character" />
         </PreferenceCategory>
     </PreferenceScreen>
 
@@ -410,6 +419,12 @@
                     android:key="@string/pref_key__todotxt__start_new_tasks_with_todays_date"
                     android:summary="@string/insert_current_date_when_starting_new_task"
                     android:title="@string/tasks_with_todays_date" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:icon="@drawable/ic_date_range_black_24dp"
+                    android:key="@string/pref_key__todotxt__start_new_tasks_with_huuid"
+                    android:summary="@string/append_human_readable_uuid_to_new_tasks"
+                    android:title="@string/huuid" />
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:icon="@drawable/ic_add_white_24dp"
