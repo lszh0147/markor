@@ -496,8 +496,8 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
     int getAppStartupTab() {
         int i = getIntOfStringPref(R.string.pref_key__app_start_tab_v2, R.id.nav_notebook);
         switch (i) {
-            case 1:
-                return R.id.nav_todo;
+//            case 1:
+//                return R.id.nav_todo;
             case 2:
                 return R.id.nav_quicknote;
         }

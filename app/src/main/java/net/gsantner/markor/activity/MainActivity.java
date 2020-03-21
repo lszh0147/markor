@@ -363,13 +363,13 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                 return true;
             }
 
-            case R.id.nav_todo: {
-                permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
-                restoreDefaultToolbar();
-                _viewPager.setCurrentItem(1);
-                _toolbar.setTitle(R.string.todo);
-                return true;
-            }
+//            case R.id.nav_todo: {
+//                permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
+//                restoreDefaultToolbar();
+//                _viewPager.setCurrentItem(1);
+//                _toolbar.setTitle(R.string.todo);
+//                return true;
+//            }
             case R.id.nav_quicknote: {
                 permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
                 restoreDefaultToolbar();
@@ -402,9 +402,9 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         (_lastBottomMenuItem != null ? _lastBottomMenuItem : menu.getItem(0)).setChecked(false);
         _lastBottomMenuItem = menu.getItem(pos).setChecked(true);
         updateFabVisibility(pos == 0);
-        _toolbar.setTitle(new String[]{_cachedFolderTitle, getString(R.string.todo), getString(R.string.quicknote), }[pos]);
+        _toolbar.setTitle(new String[]{_cachedFolderTitle,  getString(R.string.quicknote), }[pos]);
 
-        if (pos > 0 && pos < 2) {
+        if (pos > 0 && pos < 1) {
             permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
         }
     }
@@ -477,12 +477,12 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                     }
                     break;
                 }
-                case R.id.nav_todo: {
-                    if (fragment == null) {
-                        fragment = DocumentEditFragment.newInstance(_appSettings.getTodoFile(), false, false);
-                    }
-                    break;
-                }
+//                case R.id.nav_todo: {
+//                    if (fragment == null) {
+//                        fragment = DocumentEditFragment.newInstance(_appSettings.getTodoFile(), false, false);
+//                    }
+//                    break;
+//                }
 //                case R.id.nav_more: {
 //                    if (fragment == null) {
 //                        fragment = MoreFragment.newInstance();
