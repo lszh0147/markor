@@ -99,13 +99,12 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
 
     public String getNotebookDirectoryAsStr() {
         String dir = getString(R.string.pref_key__notebook_directory, "");
-        if (dir.isEmpty() && LOCAL_TESTFOLDER_FILEPATH.exists() && !BuildConfig.IS_TEST_BUILD) {
-            dir = LOCAL_TESTFOLDER_FILEPATH.getParentFile().getParent();
-            setSaveDirectory(dir);
-        }
+//        if (dir.isEmpty() && LOCAL_TESTFOLDER_FILEPATH.exists() && !BuildConfig.IS_TEST_BUILD) {
+//            dir = LOCAL_TESTFOLDER_FILEPATH.getParentFile().getParent();
+//            setSaveDirectory(dir);
+//        }
         if (dir.isEmpty()) {
-            dir = new File(new File(Environment.getExternalStorageDirectory(), "/Documents")
-                    , rstr(R.string.app_name).toLowerCase(Locale.ROOT))
+            dir = new File(Environment.getExternalStorageDirectory(), "/Android/AppData/Markor")
                     .getAbsolutePath();
             setSaveDirectory(dir);
         }
