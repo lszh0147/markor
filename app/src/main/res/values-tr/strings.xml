@@ -121,6 +121,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">Dosyalar ve klasörler</string>
     <string name="document_browser">Belge görüntüleyici</string>
     <string name="file_browser">Dosya gezgini</string>
+    <string name="set_due_date">Bitiş tarihi belirle</string>
+    <string name="insert_replace_date">Tarih gir</string>
     <string name="create_note" needed="false">Not Oluştur</string>
     <string name="special_documents" needed="false">Özel belgeler</string>
     <string name="keep_screen_on" needed="false">Ekranı açık tut</string>
@@ -161,6 +163,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">Satır sonunu vurgula</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">İki veya daha fazla boşluk içeren satırların sonundaki boşlukları vurgula</string>
     <string name="use_monospace_for_code">Kod için monospace kullan</string>
+    <string name="disable_code_block_highlight">Kod kalıpları için vurgulamayı devre dışı bırak</string>
     <string name="use_different_fonttype_slow_down">Farklı bir yazı tipi türünü kullan. Yazı tipi türünü dinamik olarak değiştirmek, uygulamanın performansını etkiler.</string>
     <string name="general">Genel</string>
     <string name="resources">Kaynaklar</string>
@@ -181,6 +184,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_tab">Tabulator</string>
     <string name="start_on_bottom">Alttan başla</string>
     <string name="start_on_bottom_when_loading_document">Bir belge yüklendikten sonra, İmleci belge sonuna yerleştir.</string>
+    <string name="unordered_list_character">Sırasız liste karakteri</string>
+    <string name="character_to_start_items_of_unordered_list_with">Sıralanmamış listeleri belirtmek için hangi karakteri kullanmalı</string>
+    <string name="unordered_list_char_dash">Kısa çizgi (-)</string>
+    <string name="unordered_list_char_asterisk">Yıldız işareti (*)</string>
+    <string name="unordered_list_char_plus">Artı işareti (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Markor sadece yerel, çevrimdışı kullanılabilir belgeleri düzenleyebilir ve tam dosya yolunu sağlamayan dosya yöneticilerini desteklemez.</string>
     <string name="sync_to_local_folder_notice">Not: Bir eşitleme uygulaması kullanırsanız, dosyalar bilinen veya özel klasörlerde bulunabilir, Markor\'un belge klasörünü değiştirerek dosyaları açabilir veya dosyayı farklı bir dosya yöneticisi ile açabilirsiniz.</string>
     <string name="configure_in_the_apps_settings">Uygulama ayarlarından yapılandır</string>
@@ -354,4 +362,15 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="back">Geri</string>
     <string name="expand_collapse">Genişlet / Daralt</string>
     <string name="essential">Gerekli</string>
+    <string name="append_human_readable_uuid_to_new_tasks">Yeni görevlere insan tarafından okunabilen UUID ekle</string>
+    <string name="action_order">Eylem sırası</string>
+    <string name="load_default_settings">Varsayılan ayarları yükle</string>
+    <string name="drag">Sürükle</string>
+    <string name="file_encryption_password">Dosya şifreleme parolası</string>
+    <string name="no_password_set_cannot_encrypt_decrypt">Parola ayarlanmadı, şifrelenemiyor veya şifre çözülemiyor.\nParola ayarlamak için Ayarlar -&gt; Genel -&gt; Parola menüsüne gidin.</string>
+    <string name="encrypt_file_content">Dosya içeriğini şifrele</string>
+    <string name="could_not_encrypt_file_content_the_file_was_not_saved">Dosya içeriği şifrelenemedi. Dosya kaydedilmedi.</string>
+    <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Dosya içeriğinin şifresi çözülemedi. Yanl parola mı kullandınız? Dosya geekten Markors AES şifrelemesi ile şifrelenmiş mi?</string>
+    <string name="password_already_set_setting_a_new_password_will_overwrite">Parola zaten ayarlanmış. Yeni bir parola belirlemek mevcut parolanın üzerine yazacaktır ve parolayı unutmanız durumunda dosyalara artık erişemeyebilirsiniz.</string>
+    <string name="code_block">Kod kalıbı</string>
 </resources>

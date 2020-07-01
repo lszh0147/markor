@@ -58,6 +58,7 @@ import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
 import android.support.annotation.XmlRes;
 import android.support.v4.app.Fragment;
+import android.support.v7.preference.DialogPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceCategory;
 import android.support.v7.preference.PreferenceFragmentCompat;
@@ -118,7 +119,6 @@ public abstract class GsPreferenceFragmentCompat<AS extends SharedPreferencesPro
     }
 
     public synchronized void doUpdatePreferences() {
-
     }
 
     protected void onPreferenceScreenChanged(PreferenceFragmentCompat preferenceFragmentCompat, PreferenceScreen preferenceScreen) {
@@ -150,7 +150,6 @@ public abstract class GsPreferenceFragmentCompat<AS extends SharedPreferencesPro
         _cu = new ContextUtils(activity);
         getPreferenceManager().setSharedPreferencesName(getSharedPreferencesName());
         addPreferencesFromResource(getPreferenceResourceForInflation());
-
 
         if (activity != null && activity.getTheme() != null) {
             TypedArray array = activity.getTheme().obtainStyledAttributes(new int[]{android.R.attr.colorBackground});
@@ -339,6 +338,22 @@ public abstract class GsPreferenceFragmentCompat<AS extends SharedPreferencesPro
      * Finds a {@link Preference} based on its key res id.
      *
      * @param key The key of the preference to retrieve.
+     * @return The {@link DialogPreference} with the key, or null.
+     * @see android.support.v7.preference.PreferenceGroup#findPreference(CharSequence)
+     */
+    public DialogPreference setDialogMessage(@StringRes int key, CharSequence message) {
+        Preference p = findPreference(key);
+        if (p instanceof DialogPreference) {
+            ((DialogPreference) p).setDialogMessage(message);
+            return (DialogPreference) p;
+        }
+        return null;
+    }
+
+    /**
+     * Finds a {@link Preference} based on its key res id.
+     *
+     * @param key The key of the preference to retrieve.
      * @return The {@link Preference} with the key, or null.
      * @see android.support.v7.preference.PreferenceGroup#findPreference(CharSequence)
      */
@@ -432,6 +447,7 @@ public abstract class GsPreferenceFragmentCompat<AS extends SharedPreferencesPro
         setDividerVisibility(isDividerVisible());
         onPreferenceScreenChanged(preferenceFragmentCompat, preferenceScreen);
         updatePreferenceChangedListeners(true);
+        doUpdatePreferences();
     }
 
     /**

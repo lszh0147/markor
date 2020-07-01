@@ -43,8 +43,8 @@ android {
     defaultConfig {
         resValue "string", "manifest_package_id", "net.gsantner.markor"
         applicationId "net.gsantner.markor"
-        versionName "2.2.7"
-        versionCode 110
+        versionName "2.2.10"
+        versionCode 113
 
         minSdkVersion rootProject.ext.version_minSdk
         targetSdkVersion rootProject.ext.version_compileSdk
@@ -162,7 +162,7 @@ dependencies {
 
     // Tool libraries
     implementation "com.jakewharton:butterknife:${version_library_butterknife}"
-    implementation 'commons-io:commons-io:2.6'
+    implementation 'commons-io:commons-io:2.7'
     if (enable_plugin_kotlin) {
         implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${version_plugin_kotlin}"
     }

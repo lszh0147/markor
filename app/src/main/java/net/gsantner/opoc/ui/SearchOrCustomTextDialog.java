@@ -62,6 +62,7 @@ public class SearchOrCustomTextDialog {
         public List<? extends CharSequence> highlightData = new ArrayList<>();
         public List<Integer> iconsForData = new ArrayList<>();
         public String messageText = "";
+        public String defaultText = "";
         public boolean isSearchEnabled = true;
         public boolean isDarkDialog = false;
         public int dialogWidthDp = WindowManager.LayoutParams.MATCH_PARENT;
@@ -78,9 +79,10 @@ public class SearchOrCustomTextDialog {
         @StringRes
         public int okButtonText = android.R.string.ok;
         @StringRes
-        public int titleText = android.R.string.untitled;
+        public int titleText = 0;
         @StringRes
         public int searchHintText = android.R.string.search_go;
+        public boolean searchIsRegex = false;
     }
 
     public static void showMultiChoiceDialogWithSearchFilterUI(final Activity activity, final DialogOptions dopt) {
@@ -134,7 +136,9 @@ public class SearchOrCustomTextDialog {
                         final String fil = constraint.toString();
 
                         for (final CharSequence str : allItems) {
-                            if ("".equals(fil) || str.toString().toLowerCase(Locale.getDefault()).contains(fil.toLowerCase(Locale.getDefault()))) {
+                            boolean match_normal = "".equals(fil) || str.toString().toLowerCase(Locale.getDefault()).contains(fil.toLowerCase(Locale.getDefault()));
+                            boolean match_regex = dopt.searchIsRegex && (str.toString().matches(fil));
+                            if (match_normal || match_regex) {
                                 resList.add(str);
                             }
                         }
@@ -147,6 +151,7 @@ public class SearchOrCustomTextDialog {
         };
 
         final AppCompatEditText searchEditText = new AppCompatEditText(activity);
+        searchEditText.setText(dopt.defaultText);
         searchEditText.setSingleLine(true);
         searchEditText.setMaxLines(1);
         searchEditText.setTextColor(dopt.textColor);
@@ -240,6 +245,9 @@ public class SearchOrCustomTextDialog {
 
         if (dopt.isSearchEnabled) {
             searchEditText.requestFocus();
+        }
+        if (dopt.defaultText != null) {
+            listAdapter.getFilter().filter(searchEditText.getText());
         }
     }
 

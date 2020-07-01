@@ -14,13 +14,12 @@ import android.content.Intent;
 import android.content.pm.ShortcutInfo;
 import android.content.pm.ShortcutManager;
 import android.graphics.drawable.Icon;
+import android.net.Uri;
 import android.os.Build;
 import android.support.annotation.NonNull;
 
 import net.gsantner.markor.R;
-import net.gsantner.markor.activity.DocumentActivity;
-import net.gsantner.markor.activity.openeditor.OpenEditorQuickNoteActivity;
-import net.gsantner.markor.activity.openeditor.OpenEditorTodoActivity;
+import net.gsantner.markor.activity.DocumentRelayActivity;
 import net.gsantner.markor.format.markdown.MarkdownTextConverter;
 
 import java.io.File;
@@ -60,27 +59,31 @@ public class ShortcutUtils {
             ShortcutManager shortcutManager = context.getSystemService(ShortcutManager.class);
             List<ShortcutInfo> newShortcuts = new ArrayList<>();
 
+            final AppSettings appSettings = new AppSettings(context);
+
             // Create the to-do shortcut
-            Intent intentToDo = new Intent(context, OpenEditorTodoActivity.class);
-            intentToDo.setAction(Intent.ACTION_VIEW);
+            Intent openTodo = new Intent(context, DocumentRelayActivity.class)
+                    .setAction(Intent.ACTION_EDIT)
+                    .setData(Uri.fromFile(appSettings.getTodoFile()));
 
             ShortcutInfo shortcutToDo = new ShortcutInfo.Builder(context, ID_TO_DO)
                     .setShortLabel(createShortLabel(context.getString(R.string.todo)))
                     .setLongLabel(createLongLabel(context.getString(R.string.todo)))
                     .setIcon(Icon.createWithResource(context, R.mipmap.ic_shortcut_todo))
-                    .setIntent(intentToDo)
+                    .setIntent(openTodo)
                     .build();
             newShortcuts.add(shortcutToDo);
 
             // Create the QuickNote shortcut
-            Intent intentQuickNote = new Intent(context, OpenEditorQuickNoteActivity.class);
-            intentQuickNote.setAction(Intent.ACTION_VIEW);
+            Intent openQuickNote = new Intent(context, DocumentRelayActivity.class)
+                    .setAction(Intent.ACTION_EDIT)
+                    .setData(Uri.fromFile(appSettings.getQuickNoteFile()));
 
             ShortcutInfo shortcutQuickNote = new ShortcutInfo.Builder(context, ID_QUICK_NOTE)
                     .setShortLabel(createShortLabel(context.getString(R.string.quicknote)))
                     .setLongLabel(createLongLabel(context.getString(R.string.quicknote)))
                     .setIcon(Icon.createWithResource(context, R.mipmap.ic_shortcut_quicknote))
-                    .setIntent(intentQuickNote)
+                    .setIntent(openQuickNote)
                     .build();
             newShortcuts.add(shortcutQuickNote);
 
@@ -95,10 +98,9 @@ public class ShortcutUtils {
 
                 File file = new File(filePath);
 
-                Intent intent = new Intent(context, DocumentActivity.class)
-                        .setAction(Intent.ACTION_VIEW)
-                        .putExtra(DocumentActivity.EXTRA_LAUNCHER_SHORTCUT_PATH, file.getAbsolutePath())
-                        .setType("text/plain");
+                Intent openFile = new Intent(context, DocumentRelayActivity.class)
+                        .setAction(Intent.ACTION_EDIT)
+                        .setData(Uri.fromFile(file));
 
                 String name = MarkdownTextConverter.MD_EXTENSION_PATTERN.matcher(file.getName()).replaceAll("");
 
@@ -106,12 +108,13 @@ public class ShortcutUtils {
                         .setShortLabel(createShortLabel(name))
                         .setLongLabel(createLongLabel(name))
                         .setIcon(Icon.createWithResource(context, R.mipmap.ic_shortcut_file))
-                        .setIntent(intent)
+                        .setIntent(openFile)
                         .build());
             }
 
             shortcutManager.setDynamicShortcuts(newShortcuts);
-        } catch (Exception ignored) {
+        } catch (Exception error) {
+            error.printStackTrace();
         }
     }
 

@@ -10,17 +10,22 @@
 package net.gsantner.markor.format.todotxt;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
+import android.os.Bundle;
+import android.support.annotation.StringRes;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.FragmentActivity;
 import android.text.Editable;
 import android.text.TextUtils;
 import android.view.HapticFeedbackConstants;
 import android.view.View;
-import android.view.ViewGroup;
 
 import net.gsantner.markor.R;
 import net.gsantner.markor.format.general.CommonTextActions;
 import net.gsantner.markor.model.Document;
 import net.gsantner.markor.ui.SearchOrCustomTextDialogCreator;
 import net.gsantner.markor.ui.hleditor.TextActions;
+import net.gsantner.markor.util.AppSettings;
 import net.gsantner.markor.util.DocumentIO;
 import net.gsantner.markor.util.ShareUtil;
 import net.gsantner.opoc.format.todotxt.SttCommander;
@@ -28,10 +33,13 @@ import net.gsantner.opoc.format.todotxt.SttTask;
 import net.gsantner.opoc.format.todotxt.extension.SttTaskWithParserInfo;
 import net.gsantner.opoc.util.Callback;
 import net.gsantner.opoc.util.FileUtils;
+import net.gsantner.opoc.util.StringUtils;
 
 import java.io.File;
+import java.text.ParseException;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 //TODO
@@ -42,44 +50,42 @@ public class TodoTxtTextActions extends TextActions {
     }
 
     @Override
-    public void appendTextActionsToBar(ViewGroup barLayout) {
-        if (barLayout.getChildCount() == 0) {
-            setBarVisible(barLayout, true);
-
-            // Regular actions
-            for (int[] actions : TMA_ACTIONS) {
-                TodoTxtTextActionsImpl actionCallback = new TodoTxtTextActionsImpl(actions[0]);
-                appendTextActionToBar(barLayout, actions[1], actions[2], actionCallback, actionCallback);
-            }
-        }
-    }
-
-    @Override
     public boolean runAction(String action, boolean modLongClick, String anotherArg) {
         return runCommonTextAction(action);
     }
 
-    //
-    //
-    //
+    @Override
+    protected ActionCallback getActionCallback(@StringRes int keyId) {
+        return new TodoTxtTextActionsImpl(keyId);
+    }
 
+    @Override
+    public List<ActionItem> getActiveActionList() {
 
-    // Mapping from action (string res) to icon (drawable res)
-    private static final int[][] TMA_ACTIONS = {
-            {R.string.tmaid_todotxt_toggle_done, R.drawable.ic_check_box_black_24dp, R.string.toggle_done},
-            {R.string.tmaid_todotxt_add_context, R.drawable.gs_email_sign_black_24dp, R.string.add_context},
-            {R.string.tmaid_todotxt_add_project, R.drawable.ic_local_offer_black_24dp, R.string.add_project},
-            {R.string.tmaid_todotxt_priority, R.drawable.ic_star_border_black_24dp, R.string.priority},
-            {R.string.tmaid_common_delete_lines, CommonTextActions.ACTION_DELETE_LINES_ICON, R.string.delete_lines},
-            {R.string.tmaid_common_open_link_browser, CommonTextActions.ACTION_OPEN_LINK_BROWSER__ICON, R.string.open_link},
-            {R.string.tmaid_common_attach_something, R.drawable.ic_attach_file_black_24dp, R.string.attach},
-            {R.string.tmaid_common_special_key, CommonTextActions.ACTION_SPECIAL_KEY__ICON, R.string.special_key},
-            {R.string.tmaid_todotxt_archive_done_tasks, R.drawable.ic_archive_black_24dp, R.string.archive_completed_tasks},
-            {R.string.tmaid_todotxt_sort_todo, R.drawable.ic_sort_by_alpha_black_24dp, R.string.sort_alphabetically},
-            {R.string.tmaid_todotxt_current_date, R.drawable.ic_date_range_black_24dp, R.string.current_date},
-    };
+        final ActionItem[] TMA_ACTIONS = {
+                new ActionItem(R.string.tmaid_todotxt_toggle_done, R.drawable.ic_check_box_black_24dp, R.string.toggle_done),
+                new ActionItem(R.string.tmaid_todotxt_add_context, R.drawable.gs_email_sign_black_24dp, R.string.add_context),
+                new ActionItem(R.string.tmaid_todotxt_add_project, R.drawable.ic_local_offer_black_24dp, R.string.add_project),
+                new ActionItem(R.string.tmaid_todotxt_priority, R.drawable.ic_star_border_black_24dp, R.string.priority),
+                new ActionItem(R.string.tmaid_common_delete_lines, CommonTextActions.ACTION_DELETE_LINES_ICON, R.string.delete_lines),
+                new ActionItem(R.string.tmaid_common_open_link_browser, CommonTextActions.ACTION_OPEN_LINK_BROWSER__ICON, R.string.open_link),
+                new ActionItem(R.string.tmaid_common_attach_something, R.drawable.ic_attach_file_black_24dp, R.string.attach),
+                new ActionItem(R.string.tmaid_common_special_key, CommonTextActions.ACTION_SPECIAL_KEY__ICON, R.string.special_key),
+                new ActionItem(R.string.tmaid_todotxt_archive_done_tasks, R.drawable.ic_archive_black_24dp, R.string.archive_completed_tasks),
+                new ActionItem(R.string.tmaid_todotxt_sort_todo, R.drawable.ic_sort_by_alpha_black_24dp, R.string.sort_alphabetically),
+                new ActionItem(R.string.tmaid_todotxt_current_date, R.drawable.ic_date_range_black_24dp, R.string.current_date),
+        };
 
-    private class TodoTxtTextActionsImpl implements View.OnClickListener, View.OnLongClickListener {
+        return Arrays.asList(TMA_ACTIONS);
+    }
+
+    @Override
+    protected @StringRes
+    int getFormatActionsKey() {
+        return R.string.pref_key__todotxt__action_keys;
+    }
+
+    private class TodoTxtTextActionsImpl extends ActionCallback {
         private int _action;
 
         TodoTxtTextActionsImpl(int action) {
@@ -165,7 +171,7 @@ public class TodoTxtTextActions extends TextActions {
                     return;
                 }
                 case R.string.tmaid_todotxt_current_date: {
-                    _hlEditor.getText().insert(origSelectionStart, SttCommander.getToday());
+                    setDate();
                     return;
                 }
                 case R.string.tmaid_common_delete_lines: {
@@ -209,7 +215,7 @@ public class TodoTxtTextActions extends TextActions {
                                 doneFileContents += TextUtils.join("\n", move).trim() + "\n";
 
                                 // Write to do done file
-                                if (DocumentIO.saveDocument(new Document(doneFile), doneFileContents, new ShareUtil(_activity))) {
+                                if (DocumentIO.saveDocument(new Document(doneFile), doneFileContents, new ShareUtil(_activity), getContext())) {
                                     // All went good
                                     _hlEditor.setText(TextUtils.join("\n", keep));
                                     int newIndex = _hlEditor.getText().toString().indexOf(newCursorTarget);
@@ -220,6 +226,7 @@ public class TodoTxtTextActions extends TextActions {
                                 }
                             }
                         }
+                        new AppSettings(_activity).setLastTodoUsedArchiveFilename(callbackPayload);
                     });
                     return;
                 }
@@ -227,17 +234,9 @@ public class TodoTxtTextActions extends TextActions {
                     SearchOrCustomTextDialogCreator.showSttSortDialogue(_activity, (orderBy, descending) -> new Thread() {
                         @Override
                         public void run() {
-                            super.run();
-                            ArrayList<SttTaskWithParserInfo> tasks = new ArrayList<>();
-                            for (String task : origText.split("\n")) {
-                                tasks.add(sttcmd.parseTask(task));
-                            }
-                            Collections.sort(tasks, new SttCommander.SttTaskSimpleComparator(orderBy, descending));
-                            ArrayList<String> tasksStrings = new ArrayList<>();
-                            for (SttTaskWithParserInfo task : tasks) {
-                                tasksStrings.add(task.getTaskLine());
-                            }
-                            setEditorTextAsync(TextUtils.join("\n", tasksStrings));
+                            ArrayList<SttTaskWithParserInfo> tasks = SttCommander.parseTasksFromTextWithParserInfo(origText);
+                            SttCommander.sortTasks(tasks, orderBy, descending);
+                            setEditorTextAsync(SttCommander.tasksToString(tasks));
                         }
                     }.start());
                     break;
@@ -306,7 +305,8 @@ public class TodoTxtTextActions extends TextActions {
                     return true;
                 }
                 case R.string.tmaid_todotxt_current_date: {
-                    _hlEditor.getText().insert(origSelectionStart, " due:" + SttCommander.getDaysFromToday(3));
+
+                    setDueDate(origTask, 3);
                     return true;
                 }
             }
@@ -328,6 +328,135 @@ public class TodoTxtTextActions extends TextActions {
             return found.tasks;
         } else {
             return new ArrayList<>();
+        }
+    }
+
+    private static Calendar parseDateString(String dateString, Calendar fallback) {
+        if (dateString == null || dateString.length() != SttCommander.DATEF_YYYY_MM_DD_LEN) {
+            return fallback;
+        }
+
+        try {
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(SttCommander.DATEF_YYYY_MM_DD.parse(dateString));
+            return calendar;
+        } catch (ParseException e) {
+            return fallback;
+        }
+    }
+
+    private void setDate() {
+        final int[] sel = StringUtils.getSelection(_hlEditor);
+        final Editable text = _hlEditor.getText();
+        final String selStr = text.subSequence(sel[0], sel[1]).toString();
+        Calendar initDate = parseDateString(selStr, Calendar.getInstance());
+
+        DatePickerDialog.OnDateSetListener listener = (_view, year, month, day) -> {
+            Calendar fmtCal = Calendar.getInstance();
+            fmtCal.set(year, month, day);
+            final String newDate = SttCommander.DATEF_YYYY_MM_DD.format(fmtCal.getTime());
+            text.replace(sel[0], sel[1], newDate);
+        };
+
+        new DateFragment()
+                .setActivity(_activity)
+                .setListener(listener)
+                .setCalendar(initDate)
+                .setMessage(getContext().getString(R.string.insert_replace_date))
+                .show(((FragmentActivity) _activity).getSupportFragmentManager(), "date");
+    }
+
+
+    private void setDueDate(SttTaskWithParserInfo task, int offset) {
+        String dueString = task.getDueDate();
+        Calendar initDate = parseDateString(dueString, Calendar.getInstance());
+        initDate.add(Calendar.DAY_OF_MONTH, dueString == null ? offset : 0);
+
+        DatePickerDialog.OnDateSetListener listener = (_view, year, month, day) -> {
+            Calendar fmtCal = Calendar.getInstance();
+            fmtCal.set(year, month, day);
+            final String newDue = "due:" + SttCommander.DATEF_YYYY_MM_DD.format(fmtCal.getTime());
+            ReplacePattern[] patterns = {
+                    // Replace due date
+                    new ReplacePattern(SttCommander.PATTERN_DUE_DATE, newDue),
+                    // Add due date to end if none already exists. Will correctly handle trailing whitespace.
+                    new ReplacePattern("(\\s)*$", " " + newDue),
+            };
+            runRegexReplaceAction(Arrays.asList(patterns));
+        };
+
+        new DateFragment()
+                .setActivity(_activity)
+                .setListener(listener)
+                .setCalendar(initDate)
+                .setMessage(getContext().getString(R.string.due_date))
+                .show(((FragmentActivity) _activity).getSupportFragmentManager(), "date");
+    }
+
+    /**
+     * A DialogFragment to manage showing a DatePicker
+     * Must be public and have default constructor.
+     */
+    public static class DateFragment extends DialogFragment {
+
+        private DatePickerDialog.OnDateSetListener _listener;
+        private Activity _activity;
+        private int _year;
+        private int _month;
+        private int _day;
+        private String _message;
+
+        public DateFragment() {
+            super();
+            setCalendar(Calendar.getInstance());
+        }
+
+        public DateFragment setListener(DatePickerDialog.OnDateSetListener listener) {
+            _listener = listener;
+            return this;
+        }
+
+        public DateFragment setActivity(Activity activity) {
+            _activity = activity;
+            return this;
+        }
+
+        public DateFragment setYear(int year) {
+            _year = year;
+            return this;
+        }
+
+        public DateFragment setMonth(int month) {
+            _month = month;
+            return this;
+        }
+
+        public DateFragment setDay(int day) {
+            _day = day;
+            return this;
+        }
+
+        public DateFragment setMessage(String message) {
+            _message = message;
+            return this;
+        }
+
+        public DateFragment setCalendar(Calendar calendar) {
+            setYear(calendar.get(Calendar.YEAR));
+            setMonth(calendar.get(Calendar.MONTH));
+            setDay(calendar.get(Calendar.DAY_OF_MONTH));
+            return this;
+        }
+
+        @Override
+        public DatePickerDialog onCreateDialog(Bundle savedInstanceState) {
+            super.onCreateDialog(savedInstanceState);
+
+            DatePickerDialog dialog = new DatePickerDialog(_activity, _listener, _year, _month, _day);
+            if (_message != null) {
+                dialog.setMessage(_message);
+            }
+            return dialog;
         }
     }
 }

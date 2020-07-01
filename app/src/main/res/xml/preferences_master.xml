@@ -11,6 +11,7 @@
 --><!--suppress AndroidElementNotAllowed -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:title="@string/settings">
@@ -40,7 +41,7 @@
 
         <PreferenceCategory android:title="@string/miscellaneous">
             <android.support.v7.preference.EditTextPreference
-                android:defaultValue=""
+                android:defaultValue="@string/empty_string"
                 android:dialogMessage="@string/always_open_files_with_this_app_when_list_contains_file_extension"
                 android:icon="@drawable/ic_open_in_browser_black_24dp"
                 android:key="@string/pref_key__exts_to_always_open_in_this_app"
@@ -65,6 +66,12 @@
                 android:key="@string/pref_key__app_start_folder"
                 android:summary="%1$s"
                 android:title="@string/app_start_folder" />
+            <android.support.v7.preference.EditTextPreference
+                android:defaultValue="@string/empty_string"
+                android:icon="@drawable/ic_lock_outline_black_24dp"
+                android:inputType="textVisiblePassword"
+                android:key="@string/pref_key__default_encryption_password"
+                android:title="@string/file_encryption_password"/>
         </PreferenceCategory>
 
         <PreferenceCategory android:title="@string/features">
@@ -326,7 +333,7 @@
                 android:summary="@string/js_css"
                 android:title="@string/inject_to_head" />
             <android.support.v7.preference.EditTextPreference
-                android:defaultValue=""
+                android:defaultValue="@string/empty_string"
                 android:icon="@drawable/ic_add_white_24dp"
                 android:key="@string/pref_key__inject_to_body"
                 android:title="@string/inject_to_body" />
@@ -391,6 +398,11 @@
                     android:key="@string/pref_key__markdown__monospace_some_parts"
                     android:summary="@string/use_different_fonttype_slow_down"
                     android:title="@string/use_monospace_for_code" />
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:icon="@drawable/ic_code_black_24dp"
+                    android:key="@string/pref_key__markdown__disable_code_block_highlight"
+                    android:title="@string/disable_code_block_highlight" />
             </PreferenceCategory>
             <PreferenceCategory android:title="@string/view_mode">
                 <CheckBoxPreference
@@ -404,6 +416,12 @@
                     android:icon="@drawable/ic_list_black_24dp"
                     android:key="@string/pref_key__markdown_show_toc"
                     android:title="@string/table_of_contents" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="@string/textactions">
+                <Preference
+                    android:icon="@drawable/ic_reorder_black_24dp"
+                    android:key="@string/pref_key__markdown__reorder_actions"
+                    android:title="@string/action_order" />
             </PreferenceCategory>
 
         </PreferenceScreen>
@@ -422,7 +440,7 @@
                 <CheckBoxPreference
                     android:defaultValue="false"
                     android:icon="@drawable/ic_date_range_black_24dp"
-                    android:key="@string/pref_key__todotxt__start_new_tasks_with_huuid"
+                    android:key="@string/pref_key__todotxt__start_new_tasks_with_huuid_v3"
                     android:summary="@string/append_human_readable_uuid_to_new_tasks"
                     android:title="@string/huuid" />
                 <CheckBoxPreference
@@ -431,6 +449,10 @@
                     android:key="@string/pref_key__todotxt__append_contexts_and_projects_on_end_of_task"
                     android:summary="@string/append_contexts_and_projects_on_end_of_task"
                     android:title="@string/append_contexts_and_projects" />
+                <Preference
+                    android:icon="@drawable/ic_reorder_black_24dp"
+                    android:key="@string/pref_key__todotxt__reorder_actions"
+                    android:title="@string/action_order" />
             </PreferenceCategory>
 
             <PreferenceCategory android:title="@string/syntax_highlighting">
@@ -453,7 +475,23 @@
                     android:summary="@string/category_to_context_project_to_tag"
                     android:title="@string/alternative_naming" />
             </PreferenceCategory>
+
         </PreferenceScreen>
+
+        <!-- To-Do Screen -->
+        <PreferenceScreen
+            android:icon="@drawable/ic_text_fields_black_24dp"
+            android:title="@string/plaintext">
+
+            <PreferenceCategory android:title="@string/textactions">
+                <Preference
+                    android:icon="@drawable/ic_reorder_black_24dp"
+                    android:key="@string/pref_key__plaintext__reorder_actions"
+                    android:title="@string/action_order" />
+            </PreferenceCategory>
+
+        </PreferenceScreen>
+
     </PreferenceCategory>
 
     <!-- Most important settings -->

@@ -62,6 +62,12 @@
             android:label="@string/settings"
             android:parentActivityName=".activity.MainActivity"
             android:theme="@style/AppTheme.Light" />
+        <activity android:name=".activity.ActionOrderActivity"
+            android:parentActivityName=".activity.SettingsActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.SettingsActivity" />
+        </activity>
         <activity android:name="other.writeily.widget.WrWidgetConfigure">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE" />
@@ -122,7 +128,11 @@
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
-
+        <activity
+            android:name=".activity.DocumentRelayActivity"
+            android:theme="@android:style/Theme.NoDisplay"
+            android:launchMode="singleTop"
+            />
         <activity
             android:name=".activity.DocumentActivity"
             android:label="@string/app_name"
@@ -254,6 +264,38 @@
                 <data
                     android:mimeType="*/*"
                     android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.md" />
+
+                <!-- Handling of file extension ".jenc" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.jenc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.jenc" />
 
                 <!-- Handling of file extension ".mdown" -->
                 <data
@@ -510,6 +552,199 @@
                 <data
                     android:mimeType="*/*"
                     android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.taskpaper" />
+
+                <!-- Handling of file extension ".adoc" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.adoc" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.adoc" />
+
+                <!-- Handling of file extension ".patch" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.patch" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.patch" />
+
+                <!-- Handling of file extension ".diff" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.diff" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.diff" />
+
+                <!-- Handling of file extension ".ldg" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.ldg" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.ldg" />
+
+                <!-- Handling of file extension ".ledger" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.ledger" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.ledger" />
+
+
+                <!-- Handling of file extension ".org" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.org" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.org" />
 
                 <!-- Handling of file extension ".yml" -->
                 <data

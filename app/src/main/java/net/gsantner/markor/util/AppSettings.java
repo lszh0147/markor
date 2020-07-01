@@ -165,6 +165,9 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getBool(R.string.pref_key__markdown__monospace_some_parts, false);
     }
 
+    public boolean isMarkdownDisableCodeBlockHighlight() {
+        return getBool(R.string.pref_key__markdown__disable_code_block_highlight, false);
+    }
 
     public int getHighlightingDelayTodoTxt() {
         return getInt(R.string.pref_key__todotxt__hl_delay, 870);
@@ -666,7 +669,7 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
     }
 
     public boolean isTodoNewTaskWithHuuidEnabled() {
-        return getBool(R.string.pref_key__todotxt__start_new_tasks_with_huuid, false);
+        return getBool(R.string.pref_key__todotxt__start_new_tasks_with_huuid_v3, false);
     }
 
     public String getHuuidDeviceId() {
@@ -676,5 +679,29 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
             setString("huuid_deviceid", deviceid);
         }
         return deviceid;
+    }
+
+    public boolean hasPasswordBeenSetOnce() {
+        return getBool(R.string.pref_key__default_encryption_password_set_once, false);
+    }
+
+    public void setPasswordHasBeenSetOnce(boolean b) {
+        setBool(R.string.pref_key__default_encryption_password_set_once, b);
+    }
+
+    public boolean getNewFileDialogLastUsedEncryption() {
+        return getBool(R.string.pref_key__new_file_dialog_lastused_encryption, false);
+    }
+
+    public void setNewFileDialogLastUsedEncryption(boolean b) {
+        setBool(R.string.pref_key__new_file_dialog_lastused_encryption, b);
+    }
+
+    public String getNewFileDialogLastUsedExtension() {
+        return getString(R.string.pref_key__new_file_dialog_lastused_extension, ".md");
+    }
+
+    public void setNewFileDialogLastUsedExtension(String v) {
+        setString(R.string.pref_key__new_file_dialog_lastused_extension, v);
     }
 }

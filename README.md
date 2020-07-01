@@ -1,6 +1,6 @@
 [![Translate](https://img.shields.io/badge/translate-crowdin-green.svg)](https://crowdin.com/project/markor/invite)
 [![Donate say thanks](https://img.shields.io/badge/donate-say%20thanks-red.svg)](https://gsantner.net/page/supportme.html?project=markor&source=readme)
-[![Chat - Matrix](https://img.shields.io/badge/chat-matrix-blue.svg)](https://matrix.to/#/#markor:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=markor-anon|?#markor) ![](https://test.gsantner.net/matomo/piwik.php?action_name=readme&idsite=2&rec=1&urlref=https%3A%2F%2Fgithub.com%2Fgsantner%2Fmarkor%2FREADME.md&_cvar=%7B%221%22%3A%5B%22source%22%2C%22readme%22%5D%2C%222%22%3A%5B%22project%22%2C%22markor%22%5D%2C%223%22%3A%5B%22packageid%22%2C%22net.gsantner.markor%22%5D%2C%224%22%3A%5B%22referrer%22%2C%22https%3A%2F%2Fgithub.com%2Fgsantner%2Fmarkor%2FREADME.md%22%5D%7D)
+[![Chat - Matrix](https://img.shields.io/badge/chat-matrix-blue.svg)](https://matrix.to/#/#markor:matrix.org) [![Chat - FreeNode IRC](https://img.shields.io/badge/chat-irc-blue.svg)](https://kiwiirc.com/client/irc.freenode.net/?nick=markor-anon|?#markor) ![](https://r.gsantner.net/matomo/piwik.php?action_name=readme&idsite=2&rec=1&urlref=https%3A%2F%2Fgithub.com%2Fgsantner%2Fmarkor%2FREADME.md&_cvar=%7B%221%22%3A%5B%22source%22%2C%22readme%22%5D%2C%222%22%3A%5B%22project%22%2C%22markor%22%5D%2C%223%22%3A%5B%22packageid%22%2C%22net.gsantner.markor%22%5D%2C%224%22%3A%5B%22referrer%22%2C%22https%3A%2F%2Fgithub.com%2Fgsantner%2Fmarkor%2FREADME.md%22%5D%7D)
 [![Build Status](https://travis-ci.org/gsantner/markor.svg?branch=master)](https://travis-ci.org/gsantner/markor)
 [![GitHub release](https://img.shields.io/github/tag/gsantner/markor.svg)](https://github.com/gsantner/markor/releases)
 [![GitHub downloads](https://img.shields.io/github/downloads/gsantner/markor/total.svg?logo=github&logoColor=lime)](https://github.com/gsantner/markor/releases)
@@ -21,14 +21,14 @@
 </a>
 </div></br>
 
-Markor is a TextEditor for Android. This project aims to make an editor that is versatile, flexible, and lightweight. Markor utilizes simple markup formats like Markdown and todo.txt for note-taking and list management. Markor is versatile at working with text, it can also be used for keeping bookmarks, copying to clipboard, fast opening a link from text and lots of more. Created files are interoptable with any other plaintext software on any platform.Markor is using open formats and is free software, openly developed and accepts community contributions.
+Markor is a TextEditor for Android. This project aims to make an editor that is versatile, flexible, and lightweight. Markor utilizes simple markup formats like Markdown and todo.txt for note-taking and list management. Markor is versatile at working with text; it can also be used for keeping bookmarks, copying to clipboard, fast opening a link from text and lots of more. Created files are interoptable with any other plaintext software on any platform. Markor is using open formats and is free software, openly developed and accepts community contributions.
 
 ## Features
 📝 Create notes and manage your to-do list using simple markup formats
-<br/>🌲 Work completely offline - whenever, wherever
+<br/>🌲 Work completely offline -- whenever, wherever
 <br/>👌 Compatible with any other plaintext software on any platform -- edit with notepad or vim, filter with grep, convert to PDF or create a zip archive
 <br/>
-<br/>🖍 Syntax Highlighting and format related actions -- quick insert pictures and to-do
+<br/>🖍 Syntax Highlighting and format related actions -- quickly insert pictures and to-dos
 <br/>👀 Convert, preview, and share documents as HTML and PDF
 <br/>
 <br/>📚 Notebook: Store all documents on a common filesystem folder
@@ -36,17 +36,18 @@ Markor is a TextEditor for Android. This project aims to make an editor that is 
 <br/>☑️ To-Do: Write down your to-do
 <br/>🖍 Formats: Markdown, todo.txt, csv, ics, ini, json, toml, txt, vcf, yaml  
 <br/>📋 Copy to clipboard: Copy any text, including text shared into Markor
-<br/>💡 Notebook is the root folder of documents and can be changed to any location on filesystem. QuickNote and ToDo are textfiles
+<br/>💡 Notebook is the root folder of documents and can be changed to any location on the filesystem. QuickNote and To-Do are textfiles
 <br/>
-<br/>🎨 Highly customizeable, dark theme available
+<br/>🎨 Highly customizable, dark theme available
 <br/>💾 Auto-Save with options for undo/redo
 <br/>👌 No ads or unnecessary permissions
 <br/>🌎 Language selection -- use other language than on the system
 <br/>
 <br/>🔃 Markor is an offline app. It works with sync apps, but they have to do syncing respectively. Sync clients known to work in combination include BitTorrent Sync, Dropbox, FolderSync, OwnCloud, NextCloud, Seafile, Syncthing, Syncopoli
+<br/>🔒 Can encrypt your textfiles with AES256. You need to set a password at the settings and use Android device with version KitKat or newer. You can use [jpencconverter](https://gitlab.com/opensource21/jpencconverter) to encrypt/decrypt easily on desktop. Be aware that only the text is encrypted not pictures or attachments.  
 
 ### Privacy<a name="privacy"></a>
-The app doesn't use the internet connection unless external resources (e.g. display image  by URL) are referenced in user generated content. 
+The app doesn't use an internet connection unless external resources (e.g. display image by URL) are referenced in user generated content. 
 The app is working completly offline, no internet connection required! No personal data will be requested or shared with the author or third parties (i.e. calendar or contacts).
 Files can be shared to other apps from inside the app by pressing the share button.
 Files are stored locally in a user selectable folder, defaulting to the device public documents folder.
@@ -57,7 +58,7 @@ Files are stored locally in a user selectable folder, defaulting to the device p
 * INTERNET  
   In user generated content data can be loaded from the internet.
 * INSTALL_SHORTCUT  
-  Install shortcut to launchers to open a file/folder in Markor.
+  Install a shortcut to launchers to open a file/folder in Markor.
 * RECORD_AUDIO  
   Markor allows to attach voice notes to the text. The permission is only used when clicking the "attach audio" button/menu to start the audio record dialog. Audio recording is always started and stopped by the user (button press).
 
@@ -96,7 +97,7 @@ The project uses [AOSP Java Code Style](https://source.android.com/source/code-s
 ## Licensing
 The code of the app is licensed Apache 2.0 or Commerical (See [LICENSE](/LICENSE.txt) for details).  
 Localization & translation files (string\*.xml) are licensed CC0 1.0.  
-Project is based on unmaintained projects writeily and writeily-pro.
+Project is based on the unmaintained projects writeily and writeily-pro.
 
 
 

@@ -121,6 +121,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">Ficheiros e pastas</string>
     <string name="document_browser">Explorador de ficheiros</string>
     <string name="file_browser">Explorador de ficheirosicheiros</string>
+    <string name="set_due_date">Definir data limite</string>
+    <string name="insert_replace_date">Inserir data</string>
     <string name="create_note" needed="false">Criar nota</string>
     <string name="special_documents" needed="false">Documentos especiais</string>
     <string name="keep_screen_on" needed="false">Manter ecrã ligado</string>
@@ -161,6 +163,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">Destacar fim de linhas</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">Destacar espaços no final das linhas que possuem dois ou mais espaços</string>
     <string name="use_monospace_for_code">Utilizar letra monoespaçada para código</string>
+    <string name="disable_code_block_highlight">Desativar destaque para blocos de código</string>
     <string name="use_different_fonttype_slow_down">Utiliza um tipo de letra diferente. A alteração desta opção pode degradar o desempenho.</string>
     <string name="general">Geral</string>
     <string name="resources">Recursos</string>
@@ -181,6 +184,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_tab">Tabulação</string>
     <string name="start_on_bottom">Iniciar no fim</string>
     <string name="start_on_bottom_when_loading_document">Ao carregar um documento, colocar o cursor no final</string>
+    <string name="unordered_list_character">Carácter de lista não ordenada</string>
+    <string name="character_to_start_items_of_unordered_list_with">O carácter a utilizar para destacar listas não ordenadas</string>
+    <string name="unordered_list_char_dash">Traço (-)</string>
+    <string name="unordered_list_char_asterisk">Asterisco (*)</string>
+    <string name="unordered_list_char_plus">Mais (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Markor só pode editar documentos locais, off-line e não tem suporte a gestor de ficheiros que não disponibilizem o caminho completo do ficheiro.</string>
     <string name="sync_to_local_folder_notice">Aviso: as aplicações de sincronização podem colocar os ficheiros em pastas personalizadas. Pode abrir os ficheiros alterando a pasta de documentos do Markor ou através de um gestor de ficheiros.</string>
     <string name="configure_in_the_apps_settings">Configurar a aplicação</string>
@@ -298,7 +306,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="app_start_folder">Pasta inicial</string>
     <string name="tab_width">Largura do separador</string>
     <string name="amount_of_space_for_tab">Número de espaços utilizados para o separador</string>
-    <string name="selected_file_may_be_a_textfile_want_to_open_in_editor">O ficheiro selecionado pode ser um ficheiro de texto. deseja abri o ficheiro no editor ou com outra aplicação?\n\nNão tente abrir ficheiros binários. Se não tem a certeza, abra com outra aplicação.</string>
+    <string name="selected_file_may_be_a_textfile_want_to_open_in_editor">O ficheiro selecionado pode ser um ficheiro de texto puro. Deseja abrir o ficheiro no editor ou em outra aplicação?\n\nNão tente abrir ficheiros binários. Se não tem a certeza, abra com outra aplicação.</string>
     <string name="list_in_recent_files">Lista nos ficheiros recentes</string>
     <string name="reload">Recarregar</string>
     <string name="wrap_words">Moldar texto</string>
@@ -354,5 +362,15 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="back">Recuar</string>
     <string name="expand_collapse">Expandir/Recolher</string>
     <string name="essential">Essencial</string>
-    <string name="append_human_readable_uuid_to_new_tasks">Acrescentar UUID humano legível a novas tarefas</string>
+    <string name="append_human_readable_uuid_to_new_tasks">Acrescentar UUID legível a novas tarefas</string>
+    <string name="action_order">Ordem das ações</string>
+    <string name="load_default_settings">Carregar predefinições</string>
+    <string name="drag">Arrastar</string>
+    <string name="file_encryption_password">Senha de criptografia de arquivo</string>
+    <string name="no_password_set_cannot_encrypt_decrypt">Palavra-passe não definida, não é possível cifrar e/ou decifrar.\nAceda a Definições - &gt; Geral -&gt; Palavra-passe para a definir.</string>
+    <string name="encrypt_file_content">Cifrar conteúdo do ficheiro</string>
+    <string name="could_not_encrypt_file_content_the_file_was_not_saved">Não foi possível cifrar o ficheiro. Ficheiro não guardado.</string>
+    <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Não foi possível decifrar o ficheiro. Utilizou a palavra-passe correta? O ficheiro foi cifrado com a cifra Markor AES?</string>
+    <string name="password_already_set_setting_a_new_password_will_overwrite">A palavra-passe já está definida. Se definir uma nova palavra-passe a atual será substituída e, caso a perca, já não será possível aceder ao ficheiro.</string>
+    <string name="code_block">Bloco de código</string>
 </resources>

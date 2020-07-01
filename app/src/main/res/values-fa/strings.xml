@@ -28,6 +28,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="create_new_document">ایجاد پرونده جدید</string>
     <string name="move">بریدن</string>
     <string name="info">اطلاعات</string>
+    <string name="file_folder_already_exists_please_use_a_different_name">Googel translator</string>
     <string name="import_from_device">درون‌ریزی از دستگاه</string>
     <string name="import_">درون‌ریزی</string>
     <string name="append_to_witharg">اضافه کردن %s</string>
@@ -46,6 +47,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="html_as_plaintext">HTML (به عنوان متن ساده)</string>
     <string name="document_editor_font">قلم ویرایشگر پرونده</string>
     <string name="theme">پوسته</string>
+    <string name="open_existing_files_in_view_mode">Apri i file esistenti in modalità vista</string>
     <string name="about">درباره مارکور</string>
     <string name="plaintext">متن ساده</string>
     <string name="file">فایل</string>
@@ -60,6 +62,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_entries">ورودی ها را انتخاب کنید</string>
     <string name="one_item_selected">یک مورد انتخاب شده</string>
     <string name="items_selected_witharg" tools:ignore="PluralsCandidate">%d مورد انتخاب شد</string>
+    <string name="hide_statusbar_at_this_view">Statusleiste in dieser Ansicht ausblenden</string>
     <string name="hide_statusbar">مخفی کردن نوار وضعیت</string>
     <string name="name">نام</string>
     <string name="url_or_path">آدرس(URL) / مسیر</string>
@@ -114,6 +117,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="create_shortcut">ایجاد میانبر</string>
     <string name="tried_to_create_shortcut_for_this_notice">ما میانبری به این پرونده در صفحه اصلی تلفن شما ایجاد کردیم؛ اما ممکن است بعضی لانچرها از این قابلیت پشتیبانی نکنند.</string>
     <string name="file_not_in_save_path_do_import_notice__appspecific">فایل انتخاب شده در پوشه یادداشت های برنامه نیست. آیا می‌خواهید آن را به پوشه کنونی کپی کنید؟ این موجب رونویسی آن روی فایل‌های هم نام موجود خواهد شد.</string>
+    <string name="file_not_in_current_folder_do_copy__appspecific">El fitxer no es troba a la carpeta actual. Voleu copiar-lo a la carpeta actual? Això sobreescriurà qualsevol fitxer amb el mateix nom.</string>
     <string name="files_and_folders">فایل‌ها و پوشه‌ها</string>
     <string name="document_browser">مرورگر پرونده</string>
     <string name="file_browser">کاوش فایل ها</string>
@@ -144,15 +148,20 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="none">هیچ</string>
     <string name="other">سایر موارد</string>
     <string name="alternative_naming">نامگذاری جایگزین</string>
+    <string name="empty_file">Prazna datoteka</string>
+    <string name="break_page_pdf_print">Prekid stranice (PDF/printanje)</string>
+    <string name="underline">خط زیر</string>
     <string name="underline_hex_color_wether_or_not_to_description__appspecific">کد های رنگی بر اساس رنگشان زیرخط‌ دار بشوند یا نه</string>
     <string name="underline_hex_color_codes">زیر خط دار کردن کد های رنگی</string>
     <string name="insert_current_date_when_starting_new_task">هنگامی که کار جدید ثبت می‌کنم تاریخ امروز را وارد کن</string>
     <string name="tasks_with_todays_date">کارها با تاریخ امروز</string>
     <string name="append_contexts_and_projects">بعد از اینکه پرونده بارگزاری شد، موقعیت مکان‌نما در انتهای پرونده قرار بگیرد</string>
+    <string name="append_contexts_and_projects_on_end_of_task">پیوست متن‌ها و پروژه‌ها در پایان کار، هنگامی که از میان‌بر متنی مناسب استفاده می‌کنید</string>
     <string name="rtl_rendering">رندر راست به چپ</string>
     <string name="highlight_line_ending">رنگی کردن پایان خطوط</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">فاصله‌های پایان خطوط را رنگی می‌کند</string>
     <string name="use_monospace_for_code">از فونت monospace برای کد استفاده کنید</string>
+    <string name="disable_code_block_highlight">غیرفعال کردن هایلایت کردن بلوک‌های کد</string>
     <string name="use_different_fonttype_slow_down">از یک نوع فونت دیگر استفاده کنید. تغییر آن به صورت پویا بر عملکرد اپ تاثیر می گذارد.</string>
     <string name="general">عمومی</string>
     <string name="resources">منابع</string>
@@ -163,6 +172,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="special_key">کلید ویژه</string>
     <string name="key_page_up">بالا بردن صفحه (Page Up)</string>
     <string name="key_page_down">پایین بردن صفحه (Page Down)</string>
+    <string name="move_text_one_line_up">متن رو یک خط ببر بالا</string>
+    <string name="move_text_one_line_down">متن رو یک خط ببر پایین</string>
     <string name="key_pos_1">ابتدای خط (کلید Home)</string>
     <string name="key_pos_end">انتهای خط (کلید End)</string>
     <string name="key_pos_1_document">آغاز پرونده</string>
@@ -170,6 +181,12 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_ctrl_a">انتخاب همه (Ctrl + A)</string>
     <string name="start_on_bottom">شروع از پایین</string>
     <string name="start_on_bottom_when_loading_document">بعد از اینکه پرونده بارگزاری شد، موقعیت مکان‌نما در انتهای پرونده قرار بگیرد</string>
+    <string name="unordered_list_character">کاراکتر لیست بدون ترتیب</string>
+    <string name="character_to_start_items_of_unordered_list_with">از کدوم کاراکتر برای مشخص کردن لیست‌های بدون ترتیب استفاده شود</string>
+    <string name="unordered_list_char_dash">خط فاصله (-)</string>
+    <string name="unordered_list_char_asterisk">ستاره (*)</string>
+    <string name="unordered_list_char_plus">مثبت (+)</string>
+    <string name="filemanager_doesnot_supply_required_data__appspecific">مارکور فقط می‌تواند فایل‌هایی را ویرایش کند که محلی هستند و به صورت آفلاین در دسترس هستند و فایل منیجر‌هایی را که مسیر کامل فایل را نمی‌دهند را ساپورت نمی‌کند.</string>
     <string name="configure_in_the_apps_settings">پیکربندی در تنظیمات برنامه‌ها</string>
     <string name="default_">پیش‌فرض</string>
     <string name="left">چپ</string>

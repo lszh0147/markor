@@ -19,7 +19,7 @@
     tools:context="net.gsantner.markor.activity.DocumentEditFragment"
     tools:showIn="@layout/document__activity">
 
-    <ScrollView
+    <net.gsantner.markor.ui.DraggableScrollbarScrollView
         android:id="@+id/document__fragment__edit__content_editor__scrolling_parent"
         android:layout_width="match_parent"
         android:background="@android:color/transparent"
@@ -30,7 +30,7 @@
         <net.gsantner.markor.ui.hleditor.HighlightingEditor
             android:id="@+id/document__fragment__edit__highlighting_editor"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:gravity="top"
             android:imeOptions="flagNoExtractUi"
@@ -42,7 +42,8 @@
             android:scrollbars="vertical"
             android:textCursorDrawable="@drawable/cursor_accent"
             tools:ignore="UnusedAttribute" />
-    </ScrollView>
+
+    </net.gsantner.markor.ui.DraggableScrollbarScrollView>
 
     <HorizontalScrollView
         android:id="@+id/document__fragment__edit__text_actions_bar__scrolling_parent"
@@ -71,7 +72,7 @@
         android:textStyle="bold"
         android:visibility="gone" />
 
-    <WebView
+    <net.gsantner.markor.ui.DraggableScrollbarWebView
         android:id="@+id/document__fragment_view_webview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

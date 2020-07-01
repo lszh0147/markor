@@ -121,6 +121,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">Filar och mappar</string>
     <string name="document_browser">Dokumentbläddrare</string>
     <string name="file_browser">Filhanterare</string>
+    <string name="set_due_date">Ange förfallodatum</string>
+    <string name="insert_replace_date">Insert date</string>
     <string name="create_note" needed="false">Skapa anteckning</string>
     <string name="special_documents" needed="false">Specialdokument</string>
     <string name="keep_screen_on" needed="false">Håll skärmen påslagen</string>
@@ -161,6 +163,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">Markera radslut</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">Markera mellanslag i slutet av rader som innehåller två eller flera mellanslag</string>
     <string name="use_monospace_for_code">Monospace för kod</string>
+    <string name="disable_code_block_highlight">Inaktivera markering för kodblock</string>
     <string name="use_different_fonttype_slow_down">Använd typsnitt med fast bredd för kod. Att ändra typsnitt dynamiskt påverkar appens prestanda.</string>
     <string name="general">Generella</string>
     <string name="resources">Resurser</string>
@@ -181,6 +184,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_tab">Tabulator</string>
     <string name="start_on_bottom">Börja vid botten</string>
     <string name="start_on_bottom_when_loading_document">När dokument laddat, placera markören vid slutet av raden</string>
+    <string name="unordered_list_character">Oordnat listtecken</string>
+    <string name="character_to_start_items_of_unordered_list_with">Vilket tecken att använda för att beteckna obeställda listor</string>
+    <string name="unordered_list_char_dash">Streck (-)</string>
+    <string name="unordered_list_char_asterisk">Asterisk (*)</string>
+    <string name="unordered_list_char_plus">Plus (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Markor kan bara redigera lokala dokument som är tillgängliga offlinie och stöder inte filhanterare som inte ger den fullständiga sökvägen.</string>
     <string name="sync_to_local_folder_notice">OBS: Synkroniseringsappar kan möjligen placera filer i egna mappar. Öppna dem genom att ändra Markors dokumentmapp eller i en annan filhanterare.</string>
     <string name="configure_in_the_apps_settings">Ställ in i appens inställningar</string>
@@ -298,7 +306,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="app_start_folder">Programmets startmapp</string>
     <string name="tab_width">Tabbredd</string>
     <string name="amount_of_space_for_tab">Antal blanksteg att visa i tab</string>
-    <string name="selected_file_may_be_a_textfile_want_to_open_in_editor">Filen du valt kan vara rå klartext. Vill du öppna den i texteditor eller i en annan app?\n\nFörsök inte öppna binärfiler. Om du är osäker, var god öppna i en annan app.</string>
+    <string name="selected_file_may_be_a_textfile_want_to_open_in_editor">Den valda filen kan vara en klartext fil. Vill du öppna den i redigeraren, eller i en annan app?\n\nFörsök inte att öppna binära filer. Om du inte är säker, öppna med andra appar.</string>
     <string name="list_in_recent_files">Visa senaste filerna</string>
     <string name="reload">Ladda om</string>
     <string name="wrap_words">Bryt långa rader</string>
@@ -355,4 +363,14 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="expand_collapse">Expandera / Komprimera</string>
     <string name="essential">Viktig</string>
     <string name="append_human_readable_uuid_to_new_tasks">Lägg till läsbar UUID för nya uppgifter</string>
+    <string name="action_order">Åtgärd order</string>
+    <string name="load_default_settings">Ladda standardinställningar</string>
+    <string name="drag">Dra</string>
+    <string name="file_encryption_password">Lösenord för filkryptering</string>
+    <string name="no_password_set_cannot_encrypt_decrypt">Inget lösenord satt, kan inte kryptera eller dekryptera.\nGå till Inställningar -&gt; Allmänt -&gt; Lösenord för att ange ett lösenord.</string>
+    <string name="encrypt_file_content">Kryptera filens innehåll</string>
+    <string name="could_not_encrypt_file_content_the_file_was_not_saved">Kunde inte kryptera filinnehåll. Filen sparades inte.</string>
+    <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Kunde inte dekryptera filens innehåll. Har du använt ett fel lösenord? Är filen verkligen krypterad med Markors AES-kryptering?</string>
+    <string name="password_already_set_setting_a_new_password_will_overwrite">Lösenord har redan angetts Att sätta ett nytt lösenord kommer att skriva över det befintliga lösenordet och du kanske inte kommer åt filer längre om du glömmer lösenordet.</string>
+    <string name="code_block">Kod block</string>
 </resources>

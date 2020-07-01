@@ -127,6 +127,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">Files and folders</string>
     <string name="document_browser">Document browser</string>
     <string name="file_browser">File browser</string>
+    <string name="set_due_date">Set due date</string>
+    <string name="insert_replace_date">Insert date</string>
 
     <string name="create_note" needed="false">Create Note</string>
     <string name="special_documents" needed="false">Special documents</string>
@@ -171,6 +173,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">Highlight line ending</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">Highlight spaces at the end of lines containing two or more spaces</string>
     <string name="use_monospace_for_code">Use monospace font for code</string>
+    <string name="disable_code_block_highlight">Disable highlighting for code blocks</string>
     <string name="use_different_fonttype_slow_down">Make use of a different font type. Changing it dynamically impacts app performance.</string>
     <string name="general">General</string>
     <string name="resources">Resources</string>
@@ -375,4 +378,16 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="expand_collapse">Expand / Collapse</string>
     <string name="essential">Essential</string>
     <string name="append_human_readable_uuid_to_new_tasks">Append human readable UUID to new tasks</string>
+    <string name="action_order">Action order</string>
+    <string name="load_default_settings">Load default settings</string>
+    <string name="drag">Drag</string>
+
+    <string name="file_encryption_password">File encryption password</string>
+    <string name="no_password_set_cannot_encrypt_decrypt">No password set, cannot encrypt or decrypt.\nGo to Settings -> General -> Password to set a password.</string>
+    <string name="encrypt_file_content">Encrypt file content</string>
+    <string name="could_not_encrypt_file_content_the_file_was_not_saved">Could not encrypt file content. The file was not saved.</string>
+    <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Could not decrypt file content. Did you use a wrong password? Is the file really encrypted with Markors AES encryption?</string>
+    <string name="password_already_set_setting_a_new_password_will_overwrite">Password already set. Setting a new password will overwrite the existing password and you may not be able to access files anymore in case you forget the password.</string>
+    <string name="code_block">Code block</string>
+
 </resources>

@@ -9,7 +9,9 @@
 #########################################################*/
 package net.gsantner.markor.activity;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -17,6 +19,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.preference.EditTextPreference;
 import android.support.v7.preference.Preference;
 import android.support.v7.preference.PreferenceFragmentCompat;
 import android.support.v7.preference.PreferenceScreen;
@@ -39,6 +42,7 @@ import java.io.File;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import other.de.stanetz.jpencconverter.PasswordStore;
 import other.writeily.widget.WrMarkorWidgetProvider;
 
 public class SettingsActivity extends AppActivityBase {
@@ -187,8 +191,29 @@ public class SettingsActivity extends AppActivityBase {
                     getString(R.string.category_to_context_project_to_tag, getString(R.string.context), getString(R.string.category), getString(R.string.project), getString(R.string.tag)));
 
             setPreferenceVisible(R.string.pref_key__is_multi_window_enabled, Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
+            setPreferenceVisible(R.string.pref_key__default_encryption_password, Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && _as.hasPasswordBeenSetOnce()) {
+                updateSummary(R.string.pref_key__default_encryption_password, "****");
+                setDialogMessage(R.string.pref_key__default_encryption_password, getString(R.string.password_already_set_setting_a_new_password_will_overwrite));
+            }
+
+
+            final int[] experimentalKeys = new int[]{
+                    R.string.pref_key__swipe_to_change_mode,
+                    R.string.pref_key__todotxt__hl_delay,
+                    R.string.pref_key__markdown__hl_delay_v2,
+                    R.string.pref_key__is_editor_statusbar_hidden,
+                    R.string.pref_key__tab_width_v2,
+                    R.string.pref_key__editor_line_spacing,
+                    R.string.pref_key__todotxt__start_new_tasks_with_huuid_v3,
+                    R.string.pref_key__default_encryption_password,
+            };
+            for (final int keyId : experimentalKeys) {
+                setPreferenceVisible(keyId, _as.isExperimentalFeaturesEnabled());
+            }
         }
 
+        @SuppressLint("ApplySharedPref")
         @Override
         protected void onPreferenceChanged(SharedPreferences prefs, String key) {
             super.onPreferenceChanged(prefs, key);
@@ -205,6 +230,14 @@ public class SettingsActivity extends AppActivityBase {
                 boolean extraLaunchersEnabled = prefs.getBoolean(key, false);
                 ActivityUtils au = new ActivityUtils(getActivity());
                 au.applySpecialLaunchersVisibility(extraLaunchersEnabled);
+            } else if (eq(key, R.string.pref_key__default_encryption_password) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT && !TextUtils.isEmpty(prefs.getString(key, null))) {
+                new PasswordStore(getActivity()).storeKey(prefs.getString(key, null), key, PasswordStore.SecurityMode.NONE);
+                // Never delete the password, otherwise you will remove the password in PasswordStore too!
+                // Never remove this line, otherwise the password will be stored unencrypted forever.
+                // Using commit and while to ensure that the asterisk-pw is definitely written.
+                prefs.edit().remove(key).commit();
+                ((EditTextPreference) findPreference(key)).setText("");
+                _as.setPasswordHasBeenSetOnce(true);
             }
         }
 
@@ -316,6 +349,14 @@ public class SettingsActivity extends AppActivityBase {
                     _as.setEditorBasicColor(false, R.color.sepia_fg_light__bg_dark, R.color.sepia_bg_light__fg_dark);
                     break;
                 }
+                case R.string.pref_key__plaintext__reorder_actions:
+                case R.string.pref_key__markdown__reorder_actions:
+                case R.string.pref_key__todotxt__reorder_actions: {
+                    Intent intent = new Intent(getActivity(), ActionOrderActivity.class);
+                    intent.putExtra(ActionOrderActivity.EXTRA_FORMAT_KEY, (keyResId == R.string.pref_key__markdown__reorder_actions) ? R.id.action_format_markdown : (keyResId == R.string.pref_key__todotxt__reorder_actions ? R.id.action_format_todotxt : R.id.action_format_plaintext));
+                    startActivity(intent);
+                    break;
+                }
             }
 
             // Handling widget color scheme
@@ -334,6 +375,13 @@ public class SettingsActivity extends AppActivityBase {
         @Override
         public boolean isDividerVisible() {
             return true;
+        }
+
+        @Override
+        public void onPause() {
+            super.onPause();
+            // Reset Password to ensure it's not stored as plaintext.
+            _as.getDefaultPreferencesEditor().remove(getContext().getString(R.string.pref_key__default_encryption_password)).commit();
         }
     }
 }

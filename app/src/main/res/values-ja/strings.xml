@@ -121,6 +121,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">ファイルとフォルダー</string>
     <string name="document_browser">ドキュメントブラウザー</string>
     <string name="file_browser">ファイルブラウザー</string>
+    <string name="set_due_date">期日を設定</string>
+    <string name="insert_replace_date">Insert date</string>
     <string name="create_note" needed="false">ノートを作成</string>
     <string name="special_documents" needed="false">特別なドキュメント</string>
     <string name="keep_screen_on" needed="false">画面をオンのままにする</string>
@@ -161,6 +163,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">行の終わりを強調表示</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">2 つ以上のスペースを含む行の末尾にスペースを強調表示します</string>
     <string name="use_monospace_for_code">コードは等幅フォントを使用</string>
+    <string name="disable_code_block_highlight">コードブロックのハイライト表示を無効にする</string>
     <string name="use_different_fonttype_slow_down">異なるフォントの種類を使用します。動的に変更するとアプリのパフォーマンスに影響します。</string>
     <string name="general">一般</string>
     <string name="resources">リソース</string>
@@ -181,6 +184,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_tab">タブ</string>
     <string name="start_on_bottom">下部で開始</string>
     <string name="start_on_bottom_when_loading_document">ドキュメントの読み込み時に、カーソル位置は最後になります</string>
+    <string name="unordered_list_character">順序なしリスト文字</string>
+    <string name="character_to_start_items_of_unordered_list_with">順序なしのリストを示すために使用する文字</string>
+    <string name="unordered_list_char_dash">ダッシュ (-)</string>
+    <string name="unordered_list_char_asterisk">アスタリスク (*)</string>
+    <string name="unordered_list_char_plus">プラス (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Markorはローカルのオフライン利用可能なドキュメントのみ編集できます。ファイルをフルパスで提供しないファイルマネージャーはサポートしていません。</string>
     <string name="sync_to_local_folder_notice">注意: 同期アプリがカスタムフォルダーにファイルを配置することがあります。Markor のドキュメントフォルダーを変更するか、別のファイルマネージャーでそれを開くことができます。</string>
     <string name="configure_in_the_apps_settings">アプリ設定を構成します</string>
@@ -354,4 +362,15 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="back">戻る</string>
     <string name="expand_collapse">展開 / 折りたたみ</string>
     <string name="essential">必須</string>
+    <string name="append_human_readable_uuid_to_new_tasks">人間が読めるUUIDを新しいタスクに追加</string>
+    <string name="action_order">操作の順序</string>
+    <string name="load_default_settings">デフォルトの設定を読み込む</string>
+    <string name="drag">ドラッグ</string>
+    <string name="file_encryption_password">ファイルの暗号化パスワード</string>
+    <string name="no_password_set_cannot_encrypt_decrypt">パスワードが設定されていません。暗号化、復号化できません。\n設定 -&gt; 全般 -&gt; パスワードに移動して、パスワードを設定してください。</string>
+    <string name="encrypt_file_content">ファイルの内容を暗号化する</string>
+    <string name="could_not_encrypt_file_content_the_file_was_not_saved">ファイルの内容を暗号化できません。ファイルを保存しませんでした。</string>
+    <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">ファイルの内容を復号化できません。パスワードが間違っていませんか? ファイルがMarkorのAES暗号で暗号化されていますか?</string>
+    <string name="password_already_set_setting_a_new_password_will_overwrite">パスワードがすでに設定されています。新しいパスワードを設定すると、既存のパスワードを上書きします。パスワードを忘れた場合はファイルにアクセスできなくなる可能性があります。</string>
+    <string name="code_block">コードブロック</string>
 </resources>

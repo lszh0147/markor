@@ -16,6 +16,8 @@ import net.gsantner.opoc.format.todotxt.extension.SttTaskWithParserInfo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -34,7 +36,8 @@ public class SttCommander {
     //
     public static final Pattern TODOTXT_FILE_PATTERN = Pattern.compile("(?i)(^todo[-.]?.*)|(.*[-.]todo\\.((txt)|(text))$)");
     public static final SimpleDateFormat DATEF_YYYY_MM_DD = new SimpleDateFormat("yyyy-MM-dd", Locale.ROOT);
-    private static final String PT_DATE = "\\d{4}-\\d{2}-\\d{2}";
+    public static final int DATEF_YYYY_MM_DD_LEN = "yyyy-MM-dd".length();
+    public static final String PT_DATE = "\\d{4}-\\d{2}-\\d{2}";
 
     public static final Pattern PATTERN_DESCRIPTION = Pattern.compile("(?:^|\\n)" +
             "(?:" +
@@ -250,7 +253,6 @@ public class SttCommander {
         sb.append(tmp);
         sb.append(task.getDescription().trim());
 
-
         task.setTaskLine(sb.toString());
         return this;
     }
@@ -374,9 +376,42 @@ public class SttCommander {
         return pattern.matcher(text).find();
     }
 
+    // Parse all tasks in (newline separated) tasks
+    public static ArrayList<SttTaskWithParserInfo> parseTasksFromTextWithParserInfo(String text) {
+        final ArrayList<SttTaskWithParserInfo> tasks = new ArrayList<>();
+        final SttCommander stt = SttCommander.get();
+        for (String task : text.split("\n")) {
+            tasks.add(stt.parseTask(task));
+        }
+        return tasks;
+    }
+
+    public static String tasksToString(Collection<? extends SttTaskWithParserInfo> tasks) {
+        final StringBuffer sb = new StringBuffer();
+        for (SttTaskWithParserInfo task : tasks) {
+            sb.append(task.getTaskLine());
+            sb.append("\n");
+        }
+        return sb.toString();
+    }
+
+    // Sort tasks array and return it. Changes input array.
+    public static List<? extends SttTask> sortTasks(List<? extends SttTask> tasks, String orderBy, Boolean descending) {
+        Collections.sort(tasks, new SttCommander.SttTaskSimpleComparator(orderBy, descending));
+        return tasks;
+    }
+
     public static class SttTaskSimpleComparator implements Comparator<SttTask> {
         private String _orderBy;
         private boolean _descending;
+
+        public static final String BY_PRIORITY = "priority";
+        public static final String BY_CONTEXT = "context";
+        public static final String BY_PROJECT = "project";
+        public static final String BY_CREATION_DATE = "creation_date";
+        public static final String BY_DUE_DATE = "due_date";
+        public static final String BY_DESCRIPTION = "description";
+        public static final String BY_LINE = "line_natural";
 
         public SttTaskSimpleComparator(String orderBy, Boolean descending) {
             _orderBy = orderBy;
@@ -387,31 +422,31 @@ public class SttCommander {
         public int compare(SttTask x, SttTask y) {
             int difference;
             switch (_orderBy) {
-                case "priority": {
+                case BY_PRIORITY: {
                     difference = compare(x.getPriority(), y.getPriority());
                     break;
                 }
-                case "context": {
+                case BY_CONTEXT: {
                     difference = compare(x.getContexts(), y.getContexts());
                     break;
                 }
-                case "project": {
+                case BY_PROJECT: {
                     difference = compare(x.getProjects(), y.getProjects());
                     break;
                 }
-                case "date": {
+                case BY_CREATION_DATE: {
                     difference = compare(x.getCreationDate(), y.getCreationDate());
                     break;
                 }
-                case "duedate": {
+                case BY_DUE_DATE: {
                     difference = compare(x.getDueDate(), y.getDueDate());
                     break;
                 }
-                case "description": {
+                case BY_DESCRIPTION: {
                     difference = compare(x.getDescription(), y.getDescription());
                     break;
                 }
-                case "line": {
+                case BY_LINE: {
                     if (x instanceof SttTaskParserInfoExtension && y instanceof SttTaskParserInfoExtension) {
                         difference = compare(((SttTaskParserInfoExtension) x).getTaskLine(), ((SttTaskParserInfoExtension) y).getTaskLine());
                     } else {
