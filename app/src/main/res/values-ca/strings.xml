@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Seleccioneu una carpeta</string>
     <string name="edit">Edita</string>
     <string name="search_documents">Cerca documents</string>
-    <string name="share_to_arrow">Comparteix amb&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Comparteix amb&#8230;</string>
     <string name="share">Comparteix</string>
     <string name="search">Cerca</string>
     <string name="display_converted_markup">Mostra el «markup» convertit</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Destaca espais al final de línies que contenen dos o més espais</string>
     <string name="use_monospace_for_code">Utilitza lletra monoespacial per a codi</string>
     <string name="disable_code_block_highlight">Desactiva el ressaltat per als blocs de codi</string>
+    <string name="auto_renumber_ordered_list">Renumera automàticament les llistes ordenades</string>
+    <string name="auto_renumber_ordered_list_slowdown">Aquesta opció pot afectar al rendiment de l\'aplicació.</string>
     <string name="use_different_fonttype_slow_down">Utilitza una font diferent. La modificació de l\'aplicació afecta dinàmicament el rendiment de l\'aplicació.</string>
     <string name="general">General</string>
     <string name="resources">Recursos</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Pàgina següent (Page Down)</string>
     <string name="move_text_one_line_up">Mou el text una línia cap amunt</string>
     <string name="move_text_one_line_down">Mou el text una línia cap avall</string>
+    <string name="start_new_line_below">Comença una nova línia a continuació</string>
     <string name="key_pos_1">Inici de línia (Pos Home)</string>
     <string name="key_pos_end">Final de línia (Pos End)</string>
     <string name="key_pos_1_document">Inici del documento</string>
@@ -345,6 +348,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Títol 1</string>
     <string name="heading_2">Títol 2</string>
     <string name="heading_3">Títol 3</string>
+    <string name="heading_4">Títol 4</string>
+    <string name="heading_5">Títol 5</string>
     <string name="bold">Negreta</string>
     <string name="italic">Cursiva</string>
     <string name="strikeout">Ratlla</string>
@@ -364,6 +369,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Essencial</string>
     <string name="append_human_readable_uuid_to_new_tasks">Afegeix UUID llegible per humans a les noves tasques</string>
     <string name="action_order">Ordre d\'acció</string>
+    <string name="toggle_action_visibility">Canvia la visibilitat de l\'acció</string>
     <string name="load_default_settings">Carrega la configuració per defecte</string>
     <string name="drag">Arrossega</string>
     <string name="file_encryption_password">Contrasenya de xifratge del fitxer</string>
@@ -373,4 +379,16 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">No s\'ha pogut desxifrar el contingut del fitxer. Heu utilitzat una contrasenya errònia? El fitxer s\'ha xifrat realment amb el xifrat AES del Markor?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">La contrasenya ja està definida. Establir una nova sobreescriurà la contrasenya existent i és possible que ja no pugueu accedir als fitxers en cas que oblideu la contrasenya.</string>
     <string name="code_block">Bloc de codi</string>
+    <string name="add_completion_date">Afegeix data de finalització</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Afegeix la data de finalització per a tots al marcar-los com fets</string>
+    <string name="file_description_format">Format de descripció del fitxer</string>
+    <string name="file_description_format_dialog">Format per a la descripció sota cada arxiu en el navegador d\'arxius. Segueix les regles de SimpleDateFormat, amb l\'addició de FS per mostrar la mida del fitxer. Deixeu-lo en blanc per utilitzar el format per defecte de la vostra configuració regional.\n\nExemple d\'entrada:\nFS yyyy MMM dd hh:mm:ss aa\nFormat de sortida:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">S\'està carregant el valor per defecte</string>
+    <string name="search_and_replace">Cercar / Reemplaça</string>
+    <string name="search_for">Cerca per</string>
+    <string name="replace_with">Reemplaça per</string>
+    <string name="replace_once">Reemplaça (1)</string>
+    <string name="replace_all">Reemplaça-ho tot</string>
+    <string name="matches">Coincidències</string>
+    <string name="search_replace_pattern_error_message">Error amb el patró de cerca o reemplaçament.</string>
 </resources>

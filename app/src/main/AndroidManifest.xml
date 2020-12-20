@@ -44,8 +44,10 @@
         android:usesCleartextTraffic="true"
         android:appCategory="productivity"
         android:isGame="false"
+        android:resizeableActivity="true"
         android:theme="@style/AppTheme.Light"
-        tools:targetApi="o">
+        tools:targetApi="o"
+        android:requestLegacyExternalStorage="true">
         <activity
             android:name=".activity.MainActivity"
             android:label="@string/app_name"
@@ -809,6 +811,39 @@
                 <data
                     android:mimeType="*/*"
                     android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.yaml" />
+
+                <!-- Handling of file extension ".xlf" -->
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\.xlf" />
+                <data
+                    android:mimeType="*/*"
+                    android:pathPattern=".*\..*\..*\..*\..*\..*\..*\..*\..*\..*\.xlf" />
+
 
                 <!-- Handling of file extension ".toml" -->
                 <data

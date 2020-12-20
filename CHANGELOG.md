@@ -1,18 +1,62 @@
-### v2.3 (in progress)
-- Add action to Move current selected line(s)/cursor text up/down by 1
+### Recent changes
+- Improve license dialog readability
+
+### v2.4 [Blog Post](https://gsantner.net/blog/2020/10/30/markor-v2.4-todotxt-source-code-syntax-highlighting.html?source=changelog)
+- Markdown: Correctly insert or remove list item on press enter at empty list item
+- Remove title from todo.txt date dialog, better usable on small devices
+- Fix search sometimes not working when chaging from view to edit mode
+- Rework Indent & Move lines Actions
+- Add settings option to control todo.txt completition date auto insert
+- All new todo.txt support in Markor
+- Add many languages to view-mode code highlighting
+- Add xlf format (plaintext)
+- Remove colored highlighting from changelog dialog
+- Add search to Markdown edit-mode outline/TOC dialog
+- New file dialog remember type selection
+- Better preserve current open folder across device rotation & reboot
+- todo.txt: Long press sort to sort by most recent used method
+- Markdown: Improve bold/italic syntax highlighting with punctuations
+- todo.txt: Create done file again when not exists
+- Add Actions: Move line up & down, start new line
+- Insert Date/Time text action: List of recent time formats
+- Control visibility of text actions
+- Edit-Mode Search: Open selected position instead of first match
+- File browser: Add settings option to customize file description format
+- todo.txt: Syntax highlighting in edit-mode search dialog
+- Save last used folder to settings, use info for titlebar
+- New File Dialog: Remember type selection
+
+### v2.3 [Blog Post](https://gsantner.net/blog/2020/07/25/markor-v2.3-outline-action-custom-order-todotxt-markdown-plaintext.html?source=changelog)
+- Add action to Move current selected line(s)/cursor text up/down
 - Add settings option for View-Mode link color
-- Improve table of contents - add border around, disable underline
-- Update Markdown parser
+- Improve table of contents - add border, disable underline
 - Long press toolbar to jump to top/bottom (edit & view mode)
 - Add search to View Mode
 - Accessibility improvements & Talkback support
-- Allow http on Android>=9
+- Allow http protocol on Android>=9
 - Telegram file edit support
-- Add accordion dropdown markdown button
-- Yellow icon for favourite files
 - Markdown: Normal sized headers by default, increases performance
 - Disable highlighting on big files to improve edit performance
 - Don't sort non-document files in third group
+- Add Accordion (Click to expand) example and add action button
+- Tooltips for action buttons
+- For index.html files, show foldername at favourites/recents
+- todo.txt: Set completition date also when there is no creation date
+- Markdown: Configurable unordered list character
+- Custom order of action buttons
+- Markdown: Add alternative more performant heading highlighting
+- Fix foldername in Main toolbar not reloaded
+- Plaintext: Add extensions for AsciiDoc (.adoc), OrgMode (.org), Ledger (.dg .ledger), Diff (.diff .patch)
+- Remember last used file extension for new file creation
+- todo.txt: Preselect last used archive file by default for archiving
+- Markdown: Long press code to insert code block
+- todo.txt: Improved task sort functionalities
+- Add action button to expand selection of cursror to whole line
+- Markdown: Add Table of contents / Outline for Edit mode (Press toolbar)
+- Vertical Scrollbar now draggable at view & edit mode
+- todo.txt: Date&Time selection dialogs
+- Markdown: Auto update ordered list numbers
+
 
 ### v2.2 [Blog Post](https://gsantner.net/blog/2019/10/27/markor-v2.2-markdown-presentations-voicenotes-audiorecord-tables.html?source=changelog)
 - Added Presentations & Slides with Markdown

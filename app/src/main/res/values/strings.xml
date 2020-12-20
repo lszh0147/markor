@@ -36,7 +36,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="edit">Edit</string>
 
     <string name="search_documents">Search documents</string>
-    <string name="share_to_arrow">Share to&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Share to&#8230;</string>
     <string name="share">Share</string>
     <string name="search">Search</string>
     <string name="display_converted_markup">Display converted markup</string>
@@ -174,6 +174,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Highlight spaces at the end of lines containing two or more spaces</string>
     <string name="use_monospace_for_code">Use monospace font for code</string>
     <string name="disable_code_block_highlight">Disable highlighting for code blocks</string>
+    <string name="auto_renumber_ordered_list">Auto-renumber ordered lists</string>
+    <string name="auto_renumber_ordered_list_slowdown">This option may impact app performance.</string>
     <string name="use_different_fonttype_slow_down">Make use of a different font type. Changing it dynamically impacts app performance.</string>
     <string name="general">General</string>
     <string name="resources">Resources</string>
@@ -186,6 +188,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Page Down (Page Down)</string>
     <string name="move_text_one_line_up">Move text one line up</string>
     <string name="move_text_one_line_down">Move text one line down</string>
+    <string name="start_new_line_below">Start new line below</string>
     <string name="key_pos_1">Line Start (Pos Home)</string>
     <string name="key_pos_end">Line End (Pos End)</string>
     <string name="key_pos_1_document">Document Start</string>
@@ -360,8 +363,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Heading 1</string>
     <string name="heading_2">Heading 2</string>
     <string name="heading_3">Heading 3</string>
+    <string name="heading_4">Heading 4</string>
+    <string name="heading_5">Heading 5</string>
     <string name="bold">Bold</string>
     <string name="italic">Italic</string>
+    <string name="highlighted">Highlighted</string>
     <string name="strikeout">Strike out</string>
     <string name="inline_code">Inline code</string>
     <string name="horizontal_line">Horizontal line</string>
@@ -379,8 +385,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Essential</string>
     <string name="append_human_readable_uuid_to_new_tasks">Append human readable UUID to new tasks</string>
     <string name="action_order">Action order</string>
+    <string name="toggle_action_visibility">Toggle action visibility</string>
     <string name="load_default_settings">Load default settings</string>
     <string name="drag">Drag</string>
+    <string name="created">Created</string>
 
     <string name="file_encryption_password">File encryption password</string>
     <string name="no_password_set_cannot_encrypt_decrypt">No password set, cannot encrypt or decrypt.\nGo to Settings -> General -> Password to set a password.</string>
@@ -389,5 +397,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Could not decrypt file content. Did you use a wrong password? Is the file really encrypted with Markors AES encryption?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Password already set. Setting a new password will overwrite the existing password and you may not be able to access files anymore in case you forget the password.</string>
     <string name="code_block">Code block</string>
-
+    <string name="add_completion_date">Add completion date</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Add completion date for todos when marking them as done</string>
+    <string name="file_description_format">File description format</string>
+    <string name="file_description_format_dialog">Format for the description under each file in the file browser. Follows Android\'s SimpleDateFormat rules, with the addition of FS for showing file size. Leave blank to use the default format for your locale.\n\nExample input:\nFS yyyy MMM dd hh:mm:ss aa\nOutput format:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Loading default value</string>
+    <string name="file_settings">File settings</string>
+    <string name="search_and_replace">Search / Replace</string>
+    <string name="search_for">Search for</string>
+    <string name="replace_with">Replace with</string>
+    <string name="replace_once">Replace (1)</string>
+    <string name="replace_all">Replace all</string>
+    <string name="matches">Matches</string>
+    <string name="search_replace_pattern_error_message">Search or replace pattern error.</string>
 </resources>

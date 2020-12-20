@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Selecionar pasta</string>
     <string name="edit">Editar</string>
     <string name="search_documents">Pesquisar documentos</string>
-    <string name="share_to_arrow">Partilhar com&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Partilhar com&#8230;</string>
     <string name="share">Partilhar</string>
     <string name="search">Pesquisar</string>
     <string name="display_converted_markup">Mostrar \'markup\' convertida</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Destacar espaços no final das linhas que possuem dois ou mais espaços</string>
     <string name="use_monospace_for_code">Utilizar letra monoespaçada para código</string>
     <string name="disable_code_block_highlight">Desativar destaque para blocos de código</string>
+    <string name="auto_renumber_ordered_list">Numeração automática de listas ordenadas</string>
+    <string name="auto_renumber_ordered_list_slowdown">Esta opção pode afetar o desempenho da aplicação.</string>
     <string name="use_different_fonttype_slow_down">Utiliza um tipo de letra diferente. A alteração desta opção pode degradar o desempenho.</string>
     <string name="general">Geral</string>
     <string name="resources">Recursos</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Página abaixo (Page Down)</string>
     <string name="move_text_one_line_up">Mover texto uma linha acima</string>
     <string name="move_text_one_line_down">Mover texto uma linha abaixo</string>
+    <string name="start_new_line_below">Iniciar nova linha abaixo</string>
     <string name="key_pos_1">Início de linha (Home)</string>
     <string name="key_pos_end">Fim de linha (End)</string>
     <string name="key_pos_1_document">Início do documento</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Título 1</string>
     <string name="heading_2">Título 2</string>
     <string name="heading_3">Título 3</string>
+    <string name="heading_4">Título 4</string>
+    <string name="heading_5">Título 5</string>
     <string name="bold">Negrito</string>
     <string name="italic">Itálico</string>
+    <string name="highlighted">Destacado</string>
     <string name="strikeout">Rasurado</string>
     <string name="inline_code">Código em linha</string>
     <string name="horizontal_line">Linha horizontal</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Essencial</string>
     <string name="append_human_readable_uuid_to_new_tasks">Acrescentar UUID legível a novas tarefas</string>
     <string name="action_order">Ordem das ações</string>
+    <string name="toggle_action_visibility">Alternar visibilidade da ação</string>
     <string name="load_default_settings">Carregar predefinições</string>
     <string name="drag">Arrastar</string>
+    <string name="created">Criado</string>
     <string name="file_encryption_password">Senha de criptografia de arquivo</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Palavra-passe não definida, não é possível cifrar e/ou decifrar.\nAceda a Definições - &gt; Geral -&gt; Palavra-passe para a definir.</string>
     <string name="encrypt_file_content">Cifrar conteúdo do ficheiro</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Não foi possível decifrar o ficheiro. Utilizou a palavra-passe correta? O ficheiro foi cifrado com a cifra Markor AES?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">A palavra-passe já está definida. Se definir uma nova palavra-passe a atual será substituída e, caso a perca, já não será possível aceder ao ficheiro.</string>
     <string name="code_block">Bloco de código</string>
+    <string name="add_completion_date">Adicionar data de conclusão</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Adicionar data de conclusão das tarefas se forem dadas como concluídas</string>
+    <string name="file_description_format">Formato da descrição do ficheiro</string>
+    <string name="file_description_format_dialog">Formato da descrição em cada ficheiro no explorador de ficheiros. Segue as regras SimpleDateFormat do Android, com a adição de FS para mostrar o tamanho do ficheiro. Deixe em branco para usar o formato padrão da sua configuração regional.\n\nExemplo de entrada:\nFS yyyy MMM dd hh:mm:ss aa\nFormato de saída:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Carregando valor padrão</string>
+    <string name="file_settings">Configurações do arquivo</string>
+    <string name="search_and_replace">Pesquisar/Substituir</string>
+    <string name="search_for">Pesquisar por</string>
+    <string name="replace_with">Substituir por</string>
+    <string name="replace_once">Substituir (1)</string>
+    <string name="replace_all">Substituir tudo</string>
+    <string name="matches">Ocorrências</string>
+    <string name="search_replace_pattern_error_message">Erro ao pesquisar ou substituir.</string>
 </resources>

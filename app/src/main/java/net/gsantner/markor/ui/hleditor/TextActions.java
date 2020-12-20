@@ -18,8 +18,10 @@ import android.support.annotation.StringRes;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.TooltipCompat;
 import android.text.Editable;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 
@@ -33,14 +35,13 @@ import net.gsantner.markor.util.ActivityUtils;
 import net.gsantner.markor.util.AppSettings;
 import net.gsantner.opoc.util.StringUtils;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Date;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 import java.util.Set;
 import java.util.regex.Matcher;
@@ -56,6 +57,11 @@ public abstract class TextActions {
     protected AppSettings _appSettings;
     protected ActivityUtils _au;
     private int _textActionSidePadding;
+    protected int _indent;
+
+    private static final String ACTION_ORDER_PREF_NAME = "action_order";
+    private static final String ORDER_SUFFIX = "_order";
+    private static final String DISABLED_SUFFIX = "_disabled";
 
     public TextActions(Activity activity, Document document) {
         _document = document;
@@ -64,6 +70,11 @@ public abstract class TextActions {
         _context = activity != null ? activity : _hlEditor.getContext();
         _appSettings = new AppSettings(_context);
         _textActionSidePadding = (int) (_appSettings.getEditorTextActionItemPadding() * _context.getResources().getDisplayMetrics().density);
+        _indent = _appSettings.getDocumentIndentSize(getPath());
+    }
+
+    public String getPath() {
+        return Document.getPath(_document);
     }
 
     /**
@@ -71,8 +82,6 @@ public abstract class TextActions {
      */
     protected abstract static class ActionCallback implements View.OnLongClickListener, View.OnClickListener {
     }
-
-    ;
 
     /**
      * Factory to generate ActionCallback for given keyId
@@ -97,6 +106,15 @@ public abstract class TextActions {
      * @return List of ActionItems
      */
     protected abstract List<ActionItem> getActiveActionList();
+
+    /**
+     * These will not be added to the actions list.
+     *
+     * @return List of keyId strings.
+     */
+    public List<String> getDisabledActions() {
+        return loadActionPreference(DISABLED_SUFFIX);
+    }
 
     /**
      * Map every string Action identifier -> ActionItem
@@ -138,18 +156,41 @@ public abstract class TextActions {
      *
      * @param keys of keys (in order) to save
      */
-    public void saveActionOrder(List<String> keys) {
-        StringBuilder builder = new StringBuilder();
-        for (String key : keys) builder.append(key).append(',');
-        if (builder.length() > 0 && builder.charAt(builder.length() - 1) == ',') {
-            builder.deleteCharAt(builder.length() - 1);
-        }
-        String combinedKeys = builder.toString();
+    public void saveDisabledActions(final List<String> keys) {
+        saveActionPreference(DISABLED_SUFFIX, keys);
+    }
 
-        // Store the keys
-        SharedPreferences settings = _activity.getSharedPreferences("action_order", Context.MODE_PRIVATE);
-        String formatKey = _activity.getResources().getString(getFormatActionsKey());
-        settings.edit().putString(formatKey, combinedKeys).apply();
+    /**
+     * Save an action order to preferences.
+     * The Preference is derived from the key returned by getFormatActionsKey
+     * <p>
+     * Keys are joined into a comma separated list before saving.
+     *
+     * @param keys of keys (in order) to save
+     */
+    public void saveActionOrder(final List<String> keys) {
+        saveActionPreference(ORDER_SUFFIX, keys);
+    }
+
+    private void saveActionPreference(final String suffix, List<String> values) {
+        // Remove any values not in current actions
+        values = new ArrayList<>(values);
+        values.retainAll(getActiveActionKeys());
+
+        SharedPreferences settings = _activity.getSharedPreferences(ACTION_ORDER_PREF_NAME, Context.MODE_PRIVATE);
+        String formatKey = _activity.getResources().getString(getFormatActionsKey()) + suffix;
+        settings.edit().putString(formatKey, TextUtils.join(",", values)).apply();
+    }
+
+    private List<String> loadActionPreference(final String suffix) {
+        String formatKey = _activity.getResources().getString(getFormatActionsKey()) + suffix;
+        SharedPreferences settings = _activity.getSharedPreferences(ACTION_ORDER_PREF_NAME, Context.MODE_PRIVATE);
+        String combinedKeys = settings.getString(formatKey, null);
+        List<String> values = Collections.emptyList();
+        if (combinedKeys != null) {
+            values = new ArrayList<String>(Arrays.asList(combinedKeys.split(",")));
+        }
+        return values;
     }
 
     /**
@@ -168,46 +209,45 @@ public abstract class TextActions {
     public List<String> getActionOrder() {
 
         ArrayList<String> definedKeys = new ArrayList<>(getActiveActionKeys());
-        ArrayList<String> prefKeys = definedKeys;
+        List<String> prefKeys = new ArrayList<>(loadActionPreference(ORDER_SUFFIX));
 
-        String formatKey = _activity.getResources().getString(getFormatActionsKey());
-        SharedPreferences settings = _activity.getSharedPreferences("action_order", Context.MODE_PRIVATE);
-        String combinedKeys = settings.getString(formatKey, null);
-
-        boolean changed = false;
-        if (combinedKeys != null) {
-            prefKeys = new ArrayList<String>(Arrays.asList(combinedKeys.split(",")));
-
-            Set<String> prefSet = new HashSet<>(prefKeys);
-            Set<String> defSet = new HashSet<>(definedKeys);
-
-            // Add any defined keys which are not in prefs
-            defSet.removeAll(prefSet);
-            prefKeys.addAll(defSet);
-
-            // Removed any pref keys which are not defined
-            prefSet.removeAll(definedKeys);
-            prefKeys.removeAll(prefSet);
-
-            changed = defSet.size() > 0 || prefSet.size() > 0;
-
+        // Handle the case where order was stored without suffix. i.e. before this release.
+        if (prefKeys.size() == 0) {
+            prefKeys = new ArrayList<>(loadActionPreference(""));
         }
 
-        if (changed) saveActionOrder(prefKeys);
+        Set<String> prefSet = new LinkedHashSet<>(prefKeys);
+        Set<String> defSet = new LinkedHashSet<>(definedKeys);
+
+        // Add any defined keys which are not in prefs
+        defSet.removeAll(prefSet);
+        prefKeys.addAll(defSet);
+
+        // Remove any pref keys which are not defined
+        prefSet.removeAll(definedKeys);
+        prefKeys.removeAll(prefSet);
+
+        if (defSet.size() > 0 || prefSet.size() > 0) {
+            saveActionOrder(prefKeys);
+        }
 
         return prefKeys;
     }
+
 
     public void appendTextActionsToBar(ViewGroup barLayout) {
         if (barLayout.getChildCount() == 0) {
             setBarVisible(barLayout, true);
 
-            Map<String, ActionItem> map = getActiveActionMap();
-            List<String> orderedKeys = getActionOrder();
-            for (String key : orderedKeys) {
-                ActionItem action = map.get(key);
-                ActionCallback actionCallback = getActionCallback(action.keyId);
-                appendTextActionToBar(barLayout, action.iconId, action.stringId, actionCallback, actionCallback);
+            final Map<String, ActionItem> map = getActiveActionMap();
+            final List<String> orderedKeys = getActionOrder();
+            final Set<String> disabledKeys = new HashSet<>(getDisabledActions());
+            for (final String key : orderedKeys) {
+                if (!disabledKeys.contains(key)) {
+                    final ActionItem action = map.get(key);
+                    final ActionCallback actionCallback = getActionCallback(action.keyId);
+                    appendTextActionToBar(barLayout, action.iconId, action.stringId, actionCallback, actionCallback);
+                }
             }
         }
     }
@@ -279,10 +319,10 @@ public abstract class TextActions {
         runRegexReplaceAction(Arrays.asList(patterns));
     }
 
-    protected class ReplacePattern {
-        public Pattern searchPattern;
-        public String replacePattern;
-        public boolean replaceAll;
+    public static class ReplacePattern {
+        public final Pattern searchPattern;
+        public final String replacePattern;
+        public final boolean replaceAll;
 
         /**
          * Construct a ReplacePattern
@@ -310,8 +350,24 @@ public abstract class TextActions {
         }
     }
 
-    protected void runRegexReplaceAction(List<ReplacePattern> patterns) {
+    public void runRegexReplaceAction(final ReplacePattern... patterns) {
+        runRegexReplaceAction(Arrays.asList(patterns), false);
+    }
+
+    public void runRegexReplaceAction(final List<ReplacePattern> patterns) {
         runRegexReplaceAction(patterns, false);
+    }
+
+    public void runRegexReplaceAction(final String pattern, final String replace) {
+        runRegexReplaceAction(Arrays.asList(new ReplacePattern(pattern, replace)), false);
+    }
+
+    public void runRegexReplaceAction(final List<ReplacePattern> patterns, final boolean matchAll) {
+        runRegexReplaceAction(_hlEditor, patterns, matchAll);
+    }
+
+    public static void runRegexReplaceAction(final EditText editor, final ReplacePattern... patterns) {
+        runRegexReplaceAction(editor, Arrays.asList(patterns), false);
     }
 
     /**
@@ -320,10 +376,12 @@ public abstract class TextActions {
      * @param patterns An array of ReplacePattern
      * @param matchAll Whether to stop matching subsequent ReplacePatterns after first match+replace
      */
-    protected void runRegexReplaceAction(final List<ReplacePattern> patterns, final boolean matchAll) {
+    public static void runRegexReplaceAction(final EditText editor, final List<ReplacePattern> patterns, final boolean matchAll) {
 
-        Editable text = _hlEditor.getText();
-        int[] selection = StringUtils.getSelection(_hlEditor);
+        Editable text = editor.getText();
+        int[] selection = StringUtils.getSelection(editor);
+        final int[] lStart = StringUtils.getLineOffsetFromIndex(text, selection[0]);
+        final int[] lEnd = StringUtils.getLineOffsetFromIndex(text, selection[1]);
 
         int lineStart = StringUtils.getLineStart(text, selection[0]);
         int selEnd = StringUtils.getLineEnd(text, selection[1]);
@@ -337,12 +395,17 @@ public abstract class TextActions {
                 Matcher matcher = pattern.searchPattern.matcher(line);
                 if (matcher.find()) {
 
-                    String newLine;
-                    if (pattern.replaceAll) newLine = matcher.replaceAll(pattern.replacePattern);
-                    else newLine = matcher.replaceFirst(pattern.replacePattern);
-
-                    text.replace(lineStart, lineEnd, newLine);
-                    selEnd += newLine.length() - line.length();
+                    // Optimization. Don't replace if the replace pattern is the pattern itself.
+                    if (!pattern.replacePattern.equals("$0")) {
+                        final String newLine;
+                        if (pattern.replaceAll) {
+                            newLine = matcher.replaceAll(pattern.replacePattern);
+                        } else {
+                            newLine = matcher.replaceFirst(pattern.replacePattern);
+                        }
+                        text.replace(lineStart, lineEnd, newLine);
+                        selEnd += newLine.length() - line.length();
+                    }
 
                     if (!matchAll) break; // Exit after first match
                 }
@@ -350,6 +413,10 @@ public abstract class TextActions {
 
             lineStart = StringUtils.getLineEnd(text, lineStart, selEnd) + 1;
         }
+
+        editor.setSelection(
+                StringUtils.getIndexFromLineOffset(text, lStart),
+                StringUtils.getIndexFromLineOffset(text, lEnd));
     }
 
     protected void runInlineAction(String _action) {
@@ -452,6 +519,16 @@ public abstract class TextActions {
         _activity.runOnUiThread(() -> _hlEditor.setText(text));
     }
 
+    protected void runIndentLines(final boolean deIndent) {
+        if (deIndent) {
+            final String leadingIndentPattern = String.format("^\\s{1,%d}", _indent);
+            TextActions.runRegexReplaceAction(_hlEditor, new TextActions.ReplacePattern(leadingIndentPattern, ""));
+        } else {
+            final String tabString = StringUtils.repeatChars(' ', _indent);
+            TextActions.runRegexReplaceAction(_hlEditor, new TextActions.ReplacePattern("^", tabString));
+        }
+    }
+
     protected boolean runCommonTextAction(String action) {
         switch (action) {
             case "tmaid_common_unordered_list_char": {
@@ -473,7 +550,7 @@ public abstract class TextActions {
 
             case "tmaid_common_time_insert_timestamp": {
                 try {
-                    _hlEditor.insertOrReplaceTextOnCursor(new SimpleDateFormat(_appSettings.getString(DatetimeFormatDialog.class.getCanonicalName() + ".lastusedformat", ""), Locale.getDefault()).format(new Date()).replace("\\n", "\n"));
+                    _hlEditor.insertOrReplaceTextOnCursor(DatetimeFormatDialog.getMostRecentDate(_activity));
                 } catch (Exception ignored) {
                 }
                 return true;

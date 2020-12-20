@@ -169,16 +169,13 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getBool(R.string.pref_key__markdown__disable_code_block_highlight, false);
     }
 
+    public boolean isMarkdownAutoUpdateList() {
+        return true;
+        // return getBool(R.string.pref_key__markdown__auto_renumber_ordered_list, false);
+    }
+
     public int getHighlightingDelayTodoTxt() {
         return getInt(R.string.pref_key__todotxt__hl_delay, 870);
-    }
-
-    public String getLastOpenedDirectory() {
-        return getString(R.string.pref_key__last_opened_directory, getNotebookDirectoryAsStr());
-    }
-
-    public void setLastOpenedDirectory(String value) {
-        setString(R.string.pref_key__last_opened_directory, value);
     }
 
     public boolean isRenderRtl() {
@@ -259,6 +256,10 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getBool(R.string.pref_key__todotxt__start_new_tasks_with_todays_date, true);
     }
 
+    public boolean isTodoAddCompletionDateEnabled() {
+        return getBool(R.string.pref_key__todotxt__add_completion_date_for_todos, true);
+    }
+
     public boolean isAppCurrentVersionFirstStart(boolean doSet) {
         int value = getInt(R.string.pref_key__app_first_start_current_version, -1);
         if (doSet) {
@@ -332,6 +333,10 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
 
     private static final String PREF_PREFIX_EDIT_POS_CHAR = "PREF_PREFIX_EDIT_POS_CHAR";
     private static final String PREF_PREFIX_EDIT_POS_SCROLL = "PREF_PREFIX_EDIT_POS_SCROLL";
+    private static final String PREF_PREFIX_WRAP_STATE = "PREF_PREFIX_WRAP_STATE";
+    private static final String PREF_PREFIX_HIGHLIGHT_STATE = "PREF_PREFIX_HIGHLIGHT_STATE";
+    private static final String PREF_PREFIX_PREVIEW_STATE = "PREF_PREFIX_PREVIEW_STATE";
+    private static final String PREF_PREFIX_INDENT_SIZE = "PREF_PREFIX_INDENT_SIZE";
 
     public void setLastEditPosition(File file, int pos, int scrolloffset) {
         if (file == null || !file.exists()) {
@@ -341,6 +346,53 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
             setInt(PREF_PREFIX_EDIT_POS_CHAR + file.getAbsolutePath(), pos, _prefCache);
             setInt(PREF_PREFIX_EDIT_POS_SCROLL + file.getAbsolutePath(), scrolloffset, _prefCache);
         }
+    }
+
+    public void setDocumentWrapState(final String path, final boolean state) {
+        setBool(PREF_PREFIX_WRAP_STATE + path, state);
+    }
+
+    public boolean getDocumentWrapState(final String path) {
+        // Use global setting as default
+        return getBool(PREF_PREFIX_WRAP_STATE + path, isEditorLineBreakingEnabled());
+    }
+
+    public void setDocumentIndentSize(final String path, final int size) {
+        if (path != null || path.trim().length() > 0) {
+            setInt(PREF_PREFIX_INDENT_SIZE + path, size);
+        }
+    }
+
+    public int getDocumentIndentSize(final String path) {
+        final int _default = 4;
+        if (path == null || path.trim().length() == 0) {
+            return _default;
+        } else {
+            return getInt(PREF_PREFIX_INDENT_SIZE + path, _default);
+        }
+    }
+
+    public void setDocumentPreviewState(final String path, final boolean state) {
+        setBool(PREF_PREFIX_PREVIEW_STATE + path, state);
+    }
+
+    public boolean getDocumentPreviewState(final String path) {
+        // Use global setting as default
+        final boolean _default = isPreviewFirst();
+        if (_default || path == null || path.trim().length() == 0) {
+            return _default;
+        } else {
+            return getBool(PREF_PREFIX_PREVIEW_STATE + path, _default);
+        }
+    }
+
+    public void setDocumentHighlightState(final String path, final boolean state) {
+        setBool(PREF_PREFIX_HIGHLIGHT_STATE + path, state);
+    }
+
+    public boolean getDocumentHighlightState(final String path) {
+        // Use global setting as default
+        return getBool(PREF_PREFIX_HIGHLIGHT_STATE + path, isHighlightingEnabled());
     }
 
     public int getLastEditPositionChar(File file) {
@@ -660,6 +712,10 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
         return getBool(R.string.pref_key__editor_markdown_bigger_headings_2, false);
     }
 
+    public boolean isZimWikiBiggerHeadings() {
+        return getBool(R.string.pref_key__editor_zimwiki_bigger_headings, false);
+    }
+
     public String getViewModeLinkColor() {
         return ContextUtils.colorToHexString(getInt(R.string.pref_key__view_mode_link_color, Color.parseColor("#388E3C")));
     }
@@ -703,5 +759,21 @@ public class AppSettings extends SharedPreferencesPropertyBackend {
 
     public void setNewFileDialogLastUsedExtension(String v) {
         setString(R.string.pref_key__new_file_dialog_lastused_extension, v);
+    }
+
+    public int getNewFileDialogLastUsedType() {
+        return getInt(R.string.pref_key__new_file_dialog_lastused_type, 0);
+    }
+
+    public void setNewFileDialogLastUsedType(int i) {
+        setInt(R.string.pref_key__new_file_dialog_lastused_type, i);
+    }
+
+    public void setFileBrowserLastBrowsedFolder(File f) {
+        setString(R.string.pref_key__file_browser_last_browsed_folder, f.getAbsolutePath());
+    }
+
+    public File getFileBrowserLastBrowsedFolder() {
+        return new File(getString(R.string.pref_key__file_browser_last_browsed_folder, getNotebookDirectoryAsStr()));
     }
 }

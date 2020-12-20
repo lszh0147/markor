@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">フォルダーの選択</string>
     <string name="edit">編集</string>
     <string name="search_documents">ドキュメントを検索</string>
-    <string name="share_to_arrow">共有&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">共有&#8230;</string>
     <string name="share">共有</string>
     <string name="search">検索</string>
     <string name="display_converted_markup">変換されたマークアップを表示</string>
@@ -69,7 +69,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="insert_link">リンクを挿入</string>
     <string name="insert_image">画像を挿入</string>
     <string name="contributors">貢献者</string>
-    <string name="save_location">場所を保存</string>
+    <string name="save_location">保存場所</string>
     <string name="select_storage_folder">ストレージのフォルダーを選択</string>
     <string name="licenses">ライセンス</string>
     <string name="changelog">変更履歴</string>
@@ -81,7 +81,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="error_need_storage_permission_to_save_documents">ドキュメントを保存するにはストレージのアクセス許可が必要です</string>
     <string name="open_with">開く…</string>
     <string name="sort">並べ替え</string>
-    <string name="date">日付順に並べ替え</string>
+    <string name="date">日付</string>
     <string name="deleteme____1">名前順に並び替え</string>
     <string name="size">サイズ</string>
     <string name="reverse_order">逆順</string>
@@ -91,7 +91,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="press_back_again_to_exit">もう一度戻るを押すと終了します</string>
     <string name="exit">終了</string>
     <string name="undo">元に戻す</string>
-    <string name="redo">繰り返し</string>
+    <string name="redo">やり直し</string>
     <string name="more">さらに</string>
     <string name="notebook">ノート</string>
     <string name="help">ヘルプ</string>
@@ -112,7 +112,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="archive">アーカイブ</string>
     <string name="add_task">タスクを追加</string>
     <string name="add_x_witharg">%s を追加</string>
-    <string name="document_to_be_loaded_and_saved_as_witharg">ドキュメントをクイックノートとして読み込みおよび保存します \"%s\"</string>
+    <string name="document_to_be_loaded_and_saved_as_witharg">ドキュメントを読み込んで、\"%s\"として保存します。</string>
     <string name="refresh">更新</string>
     <string name="create_shortcut">ショートカットを作成</string>
     <string name="tried_to_create_shortcut_for_this_notice">編集中のこのドキュメントに対して、ホーム画面にショートカットを追加します。 一部のランチャーはこの機能をサポートしていません。</string>
@@ -122,7 +122,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="document_browser">ドキュメントブラウザー</string>
     <string name="file_browser">ファイルブラウザー</string>
     <string name="set_due_date">期日を設定</string>
-    <string name="insert_replace_date">Insert date</string>
+    <string name="insert_replace_date">日付を挿入</string>
     <string name="create_note" needed="false">ノートを作成</string>
     <string name="special_documents" needed="false">特別なドキュメント</string>
     <string name="keep_screen_on" needed="false">画面をオンのままにする</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">2 つ以上のスペースを含む行の末尾にスペースを強調表示します</string>
     <string name="use_monospace_for_code">コードは等幅フォントを使用</string>
     <string name="disable_code_block_highlight">コードブロックのハイライト表示を無効にする</string>
+    <string name="auto_renumber_ordered_list">自動番号付けリスト</string>
+    <string name="auto_renumber_ordered_list_slowdown">このオプションはアプリのパフォーマンスに影響を与える可能性があります。</string>
     <string name="use_different_fonttype_slow_down">異なるフォントの種類を使用します。動的に変更するとアプリのパフォーマンスに影響します。</string>
     <string name="general">一般</string>
     <string name="resources">リソース</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">ページ下移動 (Page Down)</string>
     <string name="move_text_one_line_up">テキストを１行上に移動</string>
     <string name="move_text_one_line_down">テキストを１行下に移動</string>
+    <string name="start_new_line_below">以下の新しい行を開始します</string>
     <string name="key_pos_1">行の先頭 (Pos Home)</string>
     <string name="key_pos_end">行の末尾 (Pos End)</string>
     <string name="key_pos_1_document">ドキュメントの始め</string>
@@ -241,12 +244,12 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="enable_undo_and_redo_be_patient">操作の、元に戻す、繰り返しを有効にします。高度な使用にのみ適しています。重要なものを削除しないように気をつけてください。履歴を消去するにはエディターを閉じてから開いてください。</string>
     <string name="description">説明</string>
     <string name="edit_picture">画像を編集</string>
-    <string name="math">計算</string>
+    <string name="math">数式</string>
     <string name="table_of_contents">目次</string>
     <string name="miscellaneous">その他</string>
     <string name="textaction">テキスト操作</string>
     <string name="textactions">テキスト操作</string>
-    <string name="prefer_view">お好みビュー</string>
+    <string name="prefer_view">表示を優先</string>
     <string name="no_calendar_app_is_installed">カレンダーアプリがインストールされていません!</string>
     <string name="popular_documents">人気のあるドキュメント</string>
     <string name="color">色</string>
@@ -280,7 +283,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="app_start_tab">アプリ開始タブ</string>
     <string name="tab_to_select_at_start">アプリを起動する時に選択するタブ</string>
     <string name="swipe_to_change_mode">スワイプしてモードを変更</string>
-    <string name="swipe_to_change_to_edit_or_view_mode">スワイプして編集と表示モードを変更します (現在のモードを反対に)</string>
+    <string name="swipe_to_change_to_edit_or_view_mode">スワイプして編集モードまたは表示モード (現在のモードの反対) に変更します</string>
     <string name="folder_first">フォルダを上に表示</string>
     <string name="go_to">移動</string>
     <string name="appdata_public">AppData (公開)</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">見出し 1</string>
     <string name="heading_2">見出し 2</string>
     <string name="heading_3">見出し 3</string>
+    <string name="heading_4">見出し 4</string>
+    <string name="heading_5">見出し 5</string>
     <string name="bold">太字</string>
     <string name="italic">斜体</string>
+    <string name="highlighted">強調表示</string>
     <string name="strikeout">取り消し線</string>
     <string name="inline_code">インラインコード</string>
     <string name="horizontal_line">水平線</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">必須</string>
     <string name="append_human_readable_uuid_to_new_tasks">人間が読めるUUIDを新しいタスクに追加</string>
     <string name="action_order">操作の順序</string>
+    <string name="toggle_action_visibility">アクションの表示を切り替える</string>
     <string name="load_default_settings">デフォルトの設定を読み込む</string>
     <string name="drag">ドラッグ</string>
+    <string name="created">作成済み</string>
     <string name="file_encryption_password">ファイルの暗号化パスワード</string>
     <string name="no_password_set_cannot_encrypt_decrypt">パスワードが設定されていません。暗号化、復号化できません。\n設定 -&gt; 全般 -&gt; パスワードに移動して、パスワードを設定してください。</string>
     <string name="encrypt_file_content">ファイルの内容を暗号化する</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">ファイルの内容を復号化できません。パスワードが間違っていませんか? ファイルがMarkorのAES暗号で暗号化されていますか?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">パスワードがすでに設定されています。新しいパスワードを設定すると、既存のパスワードを上書きします。パスワードを忘れた場合はファイルにアクセスできなくなる可能性があります。</string>
     <string name="code_block">コードブロック</string>
+    <string name="add_completion_date">完了日を追加</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">完了時にタスクの完了日を追加する</string>
+    <string name="file_description_format">ファイル説明の形式</string>
+    <string name="file_description_format_dialog">ファイルブラウザの各ファイルの下の説明のためのフォーマット。ファイルサイズを表示するためのFSの追加で、AndroidのSimpleDateFormatルールに従います。 ロケールにデフォルトの形式を使用するには、空白のままにしてください。\n\n入力例:\nFS yyyyMMM dd hhh:mm:ss aa\n出力形式:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">既定値を読み込み中</string>
+    <string name="file_settings">ファイル設定</string>
+    <string name="search_and_replace">検索/置換</string>
+    <string name="search_for">検索テキスト</string>
+    <string name="replace_with">置換テキスト</string>
+    <string name="replace_once">置換 (1)</string>
+    <string name="replace_all">すべて置換</string>
+    <string name="matches">一致</string>
+    <string name="search_replace_pattern_error_message">検索または置換パターンエラー。</string>
 </resources>

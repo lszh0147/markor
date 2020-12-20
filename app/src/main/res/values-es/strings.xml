@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Seleccionar carpeta</string>
     <string name="edit">Editar</string>
     <string name="search_documents">Buscar documentos</string>
-    <string name="share_to_arrow">Compartir con...</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Compartir con...</string>
     <string name="share">Compartir</string>
     <string name="search">Búsqueda</string>
     <string name="display_converted_markup">Mostrar markup transformada</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Resaltar los espacios al final de las líneas si estas terminan en dos o más espacios</string>
     <string name="use_monospace_for_code">Usar espaciado sencillo para código</string>
     <string name="disable_code_block_highlight">Desactivar resaltado para bloques de código</string>
+    <string name="auto_renumber_ordered_list">Renumerar automáticamente las listas ordenadas</string>
+    <string name="auto_renumber_ordered_list_slowdown">Esta opción puede afectar al rendimiento de la aplicación.</string>
     <string name="use_different_fonttype_slow_down">Usa una fuente diferente. Cambiar la fuente dinámicamente afecta el desempeño de la app.</string>
     <string name="general">General</string>
     <string name="resources">Recursos</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Siguiente página (Page Down)</string>
     <string name="move_text_one_line_up">Mover texto una línea arriba</string>
     <string name="move_text_one_line_down">Mover texto una línea hacia abajo</string>
+    <string name="start_new_line_below">Empezar nueva línea a continuación</string>
     <string name="key_pos_1">Inicio de línea (Pos Home)</string>
     <string name="key_pos_end">Fin de línea (Pos End)</string>
     <string name="key_pos_1_document">Inicio de documento</string>
@@ -186,7 +189,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="start_on_bottom_when_loading_document">Al abrir un documento, posicionar el cursor al final del documento</string>
     <string name="unordered_list_character">Carácter para lista desordenada</string>
     <string name="character_to_start_items_of_unordered_list_with">Qué carácter usar para denotar listas no ordenadas</string>
-    <string name="unordered_list_char_dash">Guión (-)</string>
+    <string name="unordered_list_char_dash">Guion (-)</string>
     <string name="unordered_list_char_asterisk">Asterisco (*)</string>
     <string name="unordered_list_char_plus">Suma (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Makor sólo puede editar los documentos locales, disponibles sin conexión y no es compatible con gestores de archivos que no proporcionan la ruta de archivo completo.</string>
@@ -227,7 +230,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="disable_spelling_underline">Deshabilitar subrayado de errores de ortografía</string>
     <string name="spellcheck_keyboard_suggestion_stay_red_underline_vanishes">Mantener sugerencias, elimina subrayado rojo</string>
     <string name="location">Ubicación</string>
-    <string name="text_lines">Lineas</string>
+    <string name="text_lines">Líneas</string>
     <string name="text_characters">Caracteres</string>
     <string name="text_words">Palabras de texto</string>
     <string name="directory">Directorio</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Título 1</string>
     <string name="heading_2">Título 2</string>
     <string name="heading_3">Título 3</string>
+    <string name="heading_4">Título 4</string>
+    <string name="heading_5">Título 5</string>
     <string name="bold">Negrita</string>
     <string name="italic">Cursiva</string>
+    <string name="highlighted">Resaltado</string>
     <string name="strikeout">Tachar</string>
     <string name="inline_code">Código en línea</string>
     <string name="horizontal_line">Línea horizontal</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Esencial</string>
     <string name="append_human_readable_uuid_to_new_tasks">Añadir UUID legible por humanos a nuevas tareas</string>
     <string name="action_order">Orden de acción</string>
+    <string name="toggle_action_visibility">Alternar visibilidad de acción</string>
     <string name="load_default_settings">Cargar ajustes por defecto</string>
     <string name="drag">Arrastrar</string>
+    <string name="created">Creado</string>
     <string name="file_encryption_password">Contraseña del cifrado de archivo</string>
     <string name="no_password_set_cannot_encrypt_decrypt">No se ha establecido ninguna contraseña, no se puede cifrar o descifrar.\nVaya a Ajustes -&gt; General -&gt; Contraseña para establecer una contraseña.</string>
     <string name="encrypt_file_content">Cifrar contenido del archivo</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">No se pudo descifrar el contenido del archivo. ¿Usaste una contraseña incorrecta? ¿El archivo está realmente cifrado con el cifrado AES de Markor?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">La contraseña ya está configurada. Establecer una nueva contraseña sobrescribirá la contraseña existente y es posible que ya no pueda acceder a los archivos en caso de que olvide la contraseña.</string>
     <string name="code_block">Bloque de código</string>
+    <string name="add_completion_date">Añadir fecha de finalización</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Añadir fecha de finalización para las tareas al marcarlas como realizadas</string>
+    <string name="file_description_format">Formato de descripción de archivo</string>
+    <string name="file_description_format_dialog">Formato para la descripción bajo cada archivo en el navegador de archivos. Siga las reglas de SimpleDateFormat, con la adición de FS para mostrar el tamaño del archivo. Deje en blanco para usar el formato predeterminado para su ubicación.\n\nEjemplo de entrada:\nFS yyyy MMM dd hh:mm:ss aa\nFormato de salida:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Cargando valor por defecto</string>
+    <string name="file_settings">Ajustes de archivo</string>
+    <string name="search_and_replace">Buscar / Reemplazar</string>
+    <string name="search_for">Buscar por</string>
+    <string name="replace_with">Reemplazar por</string>
+    <string name="replace_once">Reemplazar (1)</string>
+    <string name="replace_all">Reemplazar todo</string>
+    <string name="matches">Coincidencias</string>
+    <string name="search_replace_pattern_error_message">Error de patrón de búsqueda o reemplazo.</string>
 </resources>

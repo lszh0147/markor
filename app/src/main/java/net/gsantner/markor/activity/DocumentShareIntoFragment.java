@@ -24,6 +24,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import net.gsantner.markor.R;
+import net.gsantner.markor.format.todotxt.TodoTxtTask;
 import net.gsantner.markor.model.Document;
 import net.gsantner.markor.ui.FilesystemViewerCreator;
 import net.gsantner.markor.ui.NewFileDialog;
@@ -35,7 +36,6 @@ import net.gsantner.markor.util.PermissionChecker;
 import net.gsantner.markor.util.ShareUtil;
 import net.gsantner.opoc.activity.GsFragmentBase;
 import net.gsantner.opoc.format.plaintext.PlainTextStuff;
-import net.gsantner.opoc.format.todotxt.SttCommander;
 import net.gsantner.opoc.preference.GsPreferenceFragmentCompat;
 import net.gsantner.opoc.ui.FilesystemViewerAdapter;
 import net.gsantner.opoc.ui.FilesystemViewerData;
@@ -262,24 +262,29 @@ public class DocumentShareIntoFragment extends GsFragmentBase {
 
 
         private void createNewDocument() {
-            File dir = (workingDir == null) ? _appSettings.getNotebookDirectory() : workingDir;
-            NewFileDialog dialog = NewFileDialog.newInstance(dir, (ok, f) -> {
-                if (ok && f.isFile()) {
-                    appendToExistingDocument(f, "", true);
+            FilesystemViewerCreator.showFolderDialog(new FilesystemViewerData.SelectionListenerAdapter() {
+                @Override
+                public void onFsViewerConfig(FilesystemViewerData.Options dopt) {
+                    dopt.rootFolder = (workingDir == null) ? _appSettings.getNotebookDirectory() : workingDir;
                 }
-            });
-            dialog.show(getActivity().getSupportFragmentManager(), NewFileDialog.FRAGMENT_TAG);
+
+                @Override
+                public void onFsViewerSelected(String request, File dir) {
+                    NewFileDialog dialog = NewFileDialog.newInstance(dir, false, (ok, f) -> {
+                        if (ok && f.isFile()) {
+                            appendToExistingDocument(f, "", true);
+                        }
+                    });
+                    dialog.show(getActivity().getSupportFragmentManager(), NewFileDialog.FRAGMENT_TAG);
+                }
+            }, getFragmentManager(), getActivity());
         }
 
         private void showInDocumentActivity(Document document) {
             if (getActivity() instanceof DocumentActivity) {
                 DocumentActivity a = (DocumentActivity) getActivity();
                 a.setDocument(document);
-                if (_appSettings.isPreviewFirst()) {
-                    a.showTextEditor(document, null, false, true);
-                } else {
-                    a.showTextEditor(document, null, false);
-                }
+                a.showTextEditor(document, null, false, _appSettings.getDocumentPreviewState(Document.getPath(document)));
             }
         }
 
@@ -324,7 +329,7 @@ public class DocumentShareIntoFragment extends GsFragmentBase {
                     if (permc.doIfExtStoragePermissionGranted()) {
                         String sep = "\n";
                         if (appSettings.isTodoStartTasksWithTodaysDateEnabled()) {
-                            sep = SttCommander.getToday() + " ";
+                            sep = TodoTxtTask.getToday() + " ";
                         }
                         if (appSettings.isTodoNewTaskWithHuuidEnabled()) {
                             sep += "huuid:" + PlainTextStuff.newHuuid(appSettings.getHuuidDeviceId()) + " ";

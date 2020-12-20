@@ -18,7 +18,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="rename">Byt namn</string>
     <string name="confirm_delete">Bekräfta radering</string>
     <string name="do_you_really_want_to_delete_this_witharg">Vill du verkligen radera den här %s?</string>
-    <string name="confirm_overwrite">Skriva över?</string>
+    <string name="confirm_overwrite">Bekräfta överskrivning</string>
     <string name="file_already_exists_overwerite">Filen finns redan, skriva över?</string>
     <string name="browse_filesystem">Bläddra i filsystemet</string>
     <string name="title">Titel</string>
@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Välj map</string>
     <string name="edit">Redigera</string>
     <string name="search_documents">Sök dokument</string>
-    <string name="share_to_arrow">Dela till&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Dela till&#8230;</string>
     <string name="share">Dela</string>
     <string name="search">Söc</string>
     <string name="display_converted_markup">Visa konverterad märkspråk</string>
@@ -134,13 +134,13 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="app_wide">Global</string>
     <string name="main_view">Huvudvy</string>
     <string name="overall_theme_used_in_app">Appens övergripande tema</string>
-    <string name="remember_last_directory">Ladda </string>
+    <string name="remember_last_directory">Kom ihåg senaste katalogen</string>
     <string name="syntax_highlighting">Syntaxfärgning</string>
     <string name="highlighting_delay">Fördröjning för syntaxfärgning</string>
     <string name="highlighting_delay_lower_value_more_battery_drain_description__appspecific">Fördröjning i millisekunder innan syntaxfärgningen uppdateras. Ett lägre värde startar syntaxfärgningen tidigare, men drar mer batteri och minskar prestandan.</string>
-    <string name="highlighting_enabled_or_not__appspecific">Ska inskriven text vara syntaxfärgad?</string>
+    <string name="highlighting_enabled_or_not__appspecific">Kontrollera huruvida den angivna texten borde markeras eller inte</string>
     <string name="control_font_size_in_editor">Ändra typsnittsstorlek i redigeraren</string>
-    <string name="textactions_show_useful_actions_description__appspecific">Visa verktyg för att infoga vanliga textmoduler</string>
+    <string name="textactions_show_useful_actions_description__appspecific">Visa en stapel med praktiska knappar längst ned. De här textåtgärderna ändrar texten eller kör en åtgärd som baseras på texten.</string>
     <string name="load_last_opened_folder_at_startup">Ladda senaste öppnade mapp vid start</string>
     <string name="format">Format</string>
     <string name="contexts">Kontexter</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Markera mellanslag i slutet av rader som innehåller två eller flera mellanslag</string>
     <string name="use_monospace_for_code">Monospace för kod</string>
     <string name="disable_code_block_highlight">Inaktivera markering för kodblock</string>
+    <string name="auto_renumber_ordered_list">Auto-döpta beställda listor</string>
+    <string name="auto_renumber_ordered_list_slowdown">Det här alternativet kan påverka appens prestanda.</string>
     <string name="use_different_fonttype_slow_down">Använd typsnitt med fast bredd för kod. Att ändra typsnitt dynamiskt påverkar appens prestanda.</string>
     <string name="general">Generella</string>
     <string name="resources">Resurser</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Sida ned (Page down)</string>
     <string name="move_text_one_line_up">Flytta text en rad upp</string>
     <string name="move_text_one_line_down">Flytta text en rad nedåt</string>
+    <string name="start_new_line_below">Starta ny rad nedan</string>
     <string name="key_pos_1">Början av rad (Pos home)</string>
     <string name="key_pos_end">Slutet av rad (Pos end)</string>
     <string name="key_pos_1_document">Dokumentets början</string>
@@ -223,7 +226,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="project_team">Projektlag</string>
     <string name="contributors_public_add_yourself_description">Visa bidragsinformation. Lämna information för att synas här, om du vill, efter bidragande</string>
     <string name="descending">fallande ordning</string>
-    <string name="ascending">Stigande ordning</string>
+    <string name="ascending">stigande</string>
     <string name="disable_spelling_underline">Stäng av stavningsunderstrykning</string>
     <string name="spellcheck_keyboard_suggestion_stay_red_underline_vanishes">Tangentbordsförslag förblir, röda understrykningar försvinner</string>
     <string name="location">Plats</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Rubrik 1</string>
     <string name="heading_2">Rubrik 2</string>
     <string name="heading_3">Rubrik 3</string>
+    <string name="heading_4">Rubrik 4</string>
+    <string name="heading_5">Rubrik 5</string>
     <string name="bold">Bold</string>
     <string name="italic">Italic</string>
+    <string name="highlighted">Markerad</string>
     <string name="strikeout">Slå ut</string>
     <string name="inline_code">Infogad kod</string>
     <string name="horizontal_line">Horisontell linje</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Viktig</string>
     <string name="append_human_readable_uuid_to_new_tasks">Lägg till läsbar UUID för nya uppgifter</string>
     <string name="action_order">Åtgärd order</string>
+    <string name="toggle_action_visibility">Växla åtgärdens synlighet</string>
     <string name="load_default_settings">Ladda standardinställningar</string>
     <string name="drag">Dra</string>
+    <string name="created">Skapad</string>
     <string name="file_encryption_password">Lösenord för filkryptering</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Inget lösenord satt, kan inte kryptera eller dekryptera.\nGå till Inställningar -&gt; Allmänt -&gt; Lösenord för att ange ett lösenord.</string>
     <string name="encrypt_file_content">Kryptera filens innehåll</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Kunde inte dekryptera filens innehåll. Har du använt ett fel lösenord? Är filen verkligen krypterad med Markors AES-kryptering?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Lösenord har redan angetts Att sätta ett nytt lösenord kommer att skriva över det befintliga lösenordet och du kanske inte kommer åt filer längre om du glömmer lösenordet.</string>
     <string name="code_block">Kod block</string>
+    <string name="add_completion_date">Lägg till slutdatum</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Lägg till slutdatum för todos när de markeras som gjort</string>
+    <string name="file_description_format">Filens beskrivningsformat</string>
+    <string name="file_description_format_dialog">Format för beskrivningen under varje fil i filwebbläsaren. Följer Android SimpleDateFormat regler, med tillägg av FS för att visa filstorlek. Lämna tomt för att använda standardformatet för din lokal.\n\nExempel input:\nFS yyyyy MMM dd hh:mm:ss aa\nUtdataformat:\n30KB 2020 Mar 20 11:24:52</string>
+    <string name="loading_default_value">Laddar standardvärde</string>
+    <string name="file_settings">Fil inställningar</string>
+    <string name="search_and_replace">Sök / Ersätt</string>
+    <string name="search_for">Sök efter</string>
+    <string name="replace_with">Ersätt med</string>
+    <string name="replace_once">Ersätt (1)</string>
+    <string name="replace_all">Ersätt alla</string>
+    <string name="matches">Matchningar</string>
+    <string name="search_replace_pattern_error_message">Sök eller ersätt mönsterfel.</string>
 </resources>

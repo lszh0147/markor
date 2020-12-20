@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Selecionar pastas</string>
     <string name="edit">Editar</string>
     <string name="search_documents">Procurar notas</string>
-    <string name="share_to_arrow">Compartilhar com…</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Compartilhar com…</string>
     <string name="share">Compartilhar</string>
     <string name="search">Pesquisar</string>
     <string name="display_converted_markup">Mostrar \"markup\" convertido</string>
@@ -121,8 +121,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="files_and_folders">Arquivos e pastas</string>
     <string name="document_browser">Navegador de documentos</string>
     <string name="file_browser">Gerenciador de arquivos</string>
-    <string name="set_due_date">Definir data limite</string>
-    <string name="insert_replace_date">Insert date</string>
+    <string name="set_due_date">Definir data de vencimento</string>
+    <string name="insert_replace_date">Insira data</string>
     <string name="create_note" needed="false">Criar nota</string>
     <string name="special_documents" needed="false">Documentos especiais</string>
     <string name="keep_screen_on" needed="false">Manter a tela ligada</string>
@@ -140,7 +140,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlighting_delay_lower_value_more_battery_drain_description__appspecific">Atraso em milissegundos para atualizar os destaques. Um valor baixo destaca mais rapidamente mas também utiliza mais bateria e poderá atrasar a aplicação em dispositivos mais antigos.</string>
     <string name="highlighting_enabled_or_not__appspecific">Controlar se o texto inserido será realçado ou não</string>
     <string name="control_font_size_in_editor">Controlar o tamanho da fonte do editor</string>
-    <string name="textactions_show_useful_actions_description__appspecific">Mostrar uma barra com ações úteis para inserir módulos comuns de texto</string>
+    <string name="textactions_show_useful_actions_description__appspecific">Mostrar uma barra com botões úteis abaixo. Eles podem modificar o texto ou executar uma ação baseada no texto.</string>
     <string name="load_last_opened_folder_at_startup">Abrir última pasta usada ao iniciar</string>
     <string name="format">Formatar</string>
     <string name="contexts">Contextos</string>
@@ -151,7 +151,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="other">Outros</string>
     <string name="alternative_naming">Nomes alternativos</string>
     <string name="empty_file">Arquivo vazio</string>
-    <string name="break_page_pdf_print">Quebra de página (PDF/Impressão)</string>
+    <string name="break_page_pdf_print">Quebrar página (PDF/Impressão)</string>
     <string name="underline">Sublinhado</string>
     <string name="underline_hex_color_wether_or_not_to_description__appspecific">Sublinhar ou não respectivos códigos de cores HEX</string>
     <string name="underline_hex_color_codes">Sublinhar códigos HEX de cor</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Realçar espaços no fim das linhas com mais de dois espaços</string>
     <string name="use_monospace_for_code">Usar Monospace em código</string>
     <string name="disable_code_block_highlight">Desativar o destaque de blocos de código</string>
+    <string name="auto_renumber_ordered_list">Lista de auto-renomar ordenada</string>
+    <string name="auto_renumber_ordered_list_slowdown">Esta opção pode afetar o desempenho do aplicativo.</string>
     <string name="use_different_fonttype_slow_down">Faça o uso de um tipo de fonte diferente. Alterar o tipo de fonte dinamicamente faz um impacto sobre o desempenho do aplicativo.</string>
     <string name="general">Geral</string>
     <string name="resources">Recursos</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Página seguinte (Page Down)</string>
     <string name="move_text_one_line_up">Mova o texto uma linha a cima</string>
     <string name="move_text_one_line_down">Mova o texto uma linha abaixo</string>
+    <string name="start_new_line_below">Iniciar nova linha abaixo</string>
     <string name="key_pos_1">Início da linha (Pos Home)</string>
     <string name="key_pos_end">Fim da linha (Pos End)</string>
     <string name="key_pos_1_document">Início do documento</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Cabeçalho 1</string>
     <string name="heading_2">Cabeçalho 2</string>
     <string name="heading_3">Cabeçalho 3</string>
+    <string name="heading_4">Cabeçalho 4</string>
+    <string name="heading_5">Cabeçalho 5</string>
     <string name="bold">Negrito</string>
     <string name="italic">Itálico</string>
+    <string name="highlighted">Destacado</string>
     <string name="strikeout">Rasurado</string>
     <string name="inline_code">Código em linha</string>
     <string name="horizontal_line">Linha horizontal</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Essencial</string>
     <string name="append_human_readable_uuid_to_new_tasks">Acrescentar UUID humano legível a novas tarefas</string>
     <string name="action_order">Ação pedido</string>
+    <string name="toggle_action_visibility">Alternar visibilidade da ação</string>
     <string name="load_default_settings">Carregar configurações padrão</string>
     <string name="drag">Arrastar</string>
+    <string name="created">Criado</string>
     <string name="file_encryption_password">Senha de criptografia de arquivo</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Nenhuma senha definida, não pode criptografar ou descriptografar.\nVá para Configurações -&gt; Geral -&gt; Senha para definir uma senha.</string>
     <string name="encrypt_file_content">Criptografar conteúdo do arquivo</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Não foi possível descriptografar o conteúdo do arquivo. Você usou uma senha errada? O arquivo é realmente criptografado com criptografia AES Markors.</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Senha já definida. Definir uma nova senha irá sobrescrever a senha existente e talvez você não consiga mais acessar os arquivos caso você esqueça a senha.</string>
     <string name="code_block">Bloco de código</string>
+    <string name="add_completion_date">Adicionar data de conclusão</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Adicionar data de conclusão das tarefas ao marcá-las como concluídas</string>
+    <string name="file_description_format">Formato da descrição do arquivo</string>
+    <string name="file_description_format_dialog">Formato da descrição em cada arquivo no navegador de arquivos. Segue as regras SimpleDateFormat do Android, com a adição de FS para mostrar o tamanho do arquivo. Deixe em branco para usar o formato padrão para a sua localidade.\n\nExemplo de entrada:\nFS yyyy MMM dd hh:mm:ss aa\nFormato de saída:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Carregando valor padrão</string>
+    <string name="file_settings">Configurações do arquivo</string>
+    <string name="search_and_replace">Buscar / Substituir</string>
+    <string name="search_for">Pesquisar por</string>
+    <string name="replace_with">Substituir por</string>
+    <string name="replace_once">Substituir (1)</string>
+    <string name="replace_all">Substituir todos</string>
+    <string name="matches">Jogos</string>
+    <string name="search_replace_pattern_error_message">Erro ao pesquisar ou substituir padrão.</string>
 </resources>

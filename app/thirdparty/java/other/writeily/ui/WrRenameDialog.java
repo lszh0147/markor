@@ -25,7 +25,6 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import net.gsantner.markor.R;
-import net.gsantner.markor.util.AppCast;
 import net.gsantner.markor.util.AppSettings;
 import net.gsantner.markor.util.ShareUtil;
 import net.gsantner.opoc.util.Callback;
@@ -92,7 +91,6 @@ public class WrRenameDialog extends DialogFragment {
             }
 
             if (renamed || !filenameChanged) {
-                AppCast.VIEW_FOLDER_CHANGED.send(getContext(), file.getParent(), true);
                 if (_callback != null) {
                     _callback.callback(file);
                 }

@@ -35,11 +35,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Velg mappe</string>
     <string name="edit">Rediger</string>
     <string name="search_documents">Søk i dokumenter</string>
-    <string name="share_to_arrow">Del med&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Del med&#8230;</string>
     <string name="share">Del</string>
     <string name="search">Søk</string>
     <string name="display_converted_markup">Vis konvertert markup</string>
-    <string name="editor">Redaktør</string>
+    <string name="editor">Endre</string>
     <string name="folders">Mapper</string>
     <string name="files">Filer</string>
     <string name="document">Dokument</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Framhev mellomrom ved linjeslutt for linjer som inneholder to eller flere mellomrom</string>
     <string name="use_monospace_for_code">Bruk monospace skrift for kode</string>
     <string name="disable_code_block_highlight">Deaktiver utheving for kodeklosser</string>
+    <string name="auto_renumber_ordered_list">Automatisk omdirigering sorterte lister</string>
+    <string name="auto_renumber_ordered_list_slowdown">Dette alternativet kan påvirke appens ytelse.</string>
     <string name="use_different_fonttype_slow_down">Bruk annen skrifttype. Endring har dynamisk innvirkning på programytelse.</string>
     <string name="general">Generelt</string>
     <string name="resources">Ressurser</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Side ned (ned)</string>
     <string name="move_text_one_line_up">Flytt teksten en linje opp</string>
     <string name="move_text_one_line_down">Flytt teksten en linje ned</string>
+    <string name="start_new_line_below">Start ny linje under</string>
     <string name="key_pos_1">Linjestart (Pos Home)</string>
     <string name="key_pos_end">Linjeslutt (Pos End)</string>
     <string name="key_pos_1_document">Dokument start</string>
@@ -206,21 +209,21 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="edit_text_in_center_of_screen">Rediger tekst i midten av skjermen</string>
     <string name="clipboard">Utklippstavle</string>
     <string name="select_existing_document">Velg eksisterende dokument</string>
-    <string name="open_source_licenses">Åpen kildekode-lisenser</string>
+    <string name="open_source_licenses">Åpen kilde-lisenser</string>
     <string name="rate_this_app">Vurder denne appen</string>
     <string name="translate">Oversett</string>
     <string name="more_info_and_help">Mer info om dette</string>
     <string name="report_bugs">Rapporter feil</string>
     <string name="more_info_on_how_to_donate_or_otherwise_support_this_project_text">Mer info om donering til utvikleren eller bidra til dette prosjektet.</string>
-    <string name="join_community">Delta i samfunnet</string>
+    <string name="join_community">Bli med i fellesskapet</string>
     <string name="bug_reports_suggest_improvements">Gi tilbakemeldinger, rapporter feil eller foreslå forbedringer</string>
-    <string name="help_translating_this_app">Oversett dette programmet til andre språk</string>
+    <string name="help_translating_this_app">Hjelp oss oversett denne appen til flere språk</string>
     <string name="source_code">Kildekode</string>
     <string name="project_license">Prosjektets lisens</string>
     <string name="project_contribution_info">Prosjekt bidrag info</string>
     <string name="more_info_on_how_to_contribute_to_this_project">Mer info om hvordan du kan bidra til dette prosjektet</string>
     <string name="contribute_code_to_this_project_anybody_welcome">Bidra med kode til prosjektet. Alle er velkomne, inkludert nybegynnere</string>
-    <string name="project_team">Prosjekt team</string>
+    <string name="project_team">Prosjekt laget</string>
     <string name="contributors_public_add_yourself_description">Vis info om bidragsytere. De kan valgfritt bidra med info til visning her etter bidrag.</string>
     <string name="descending">synkende</string>
     <string name="ascending">stigende</string>
@@ -262,7 +265,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="folder_is_created_without_extension">- Mappen ble opprettet uten filtype</string>
     <string name="keep_existing_file">- Filer og mapper er ikke overskrevet</string>
     <string name="multiple_windows">Flere vinduer</string>
-    <string name="font">Font</string>
+    <string name="font">Skrifttype</string>
     <string name="open_new_documents_always_in_new_window">Åpne dokumenter alltid i separate vinduer. Bytt ved å bruke enhetens \"nylige\" nøkkel.</string>
     <string name="enter_or_select_format">Angi eller velg format</string>
     <string name="pick_date">Velg dato</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Overskrift 1</string>
     <string name="heading_2">Overskrift 2</string>
     <string name="heading_3">Overskrift 3</string>
+    <string name="heading_4">Overskrift 4</string>
+    <string name="heading_5">Overskrift 5</string>
     <string name="bold">Bold</string>
     <string name="italic">Italic</string>
+    <string name="highlighted">Uthevet</string>
     <string name="strikeout">Slag ut</string>
     <string name="inline_code">Inline kode</string>
     <string name="horizontal_line">Liggende linje</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Nødvendig</string>
     <string name="append_human_readable_uuid_to_new_tasks">Legg til menneskelig lesbar UUID til nye oppgaver</string>
     <string name="action_order">Handlingen rekkefølge</string>
+    <string name="toggle_action_visibility">Vis/skjul handlingen</string>
     <string name="load_default_settings">Last inn standardinnstillinger</string>
     <string name="drag">Dra</string>
+    <string name="created">Opprettet</string>
     <string name="file_encryption_password">Fil krypteringspassord</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Ingen passordinnstilling kan ikke kryptere eller dekryptere.\nGå til Innstillinger -&gt; Generelt -&gt; Passord for å angi et passord.</string>
     <string name="encrypt_file_content">Krypter filinnhold</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Kunne ikke dekryptere filinnhold. Har du brukt et feil passord? Er filen virkelig kryptert med Markors AES kryptering?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Passordet er allerede angitt. Å oppgi et nytt passord vil overskrive det eksisterende passordet, og det kan hende du ikke har tilgang til filer lenger dersom du glemmer passordet.</string>
     <string name="code_block">Kode blokk</string>
+    <string name="add_completion_date">Legg til ferdig dato</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Legg til sluttdato for todos når du merker dem som ferdig</string>
+    <string name="file_description_format">Format for filbeskrivelse</string>
+    <string name="file_description_format_dialog">Formatet for beskrivelsen under hver fil i filnettleser. Følg reglene for Android, SimpleDateFormat med tillegg av FS for å vise filstørrelse. La være blank for å bruke standardformat for din lokalitet.\n\nEksempel input:\nFS yyyy MMM dd ht:mm:ss aa\nUtdataformat:\n30 KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Laster inn standardverdi</string>
+    <string name="file_settings">Fil innstillinger</string>
+    <string name="search_and_replace">Søk / erstatt</string>
+    <string name="search_for">Søk etter</string>
+    <string name="replace_with">Erstatt med</string>
+    <string name="replace_once">Erstatt (1)</string>
+    <string name="replace_all">Erstatt alle</string>
+    <string name="matches">Treff</string>
+    <string name="search_replace_pattern_error_message">Søk eller erstatt mønsterfeil.</string>
 </resources>

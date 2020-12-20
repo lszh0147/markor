@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Выбрать папку</string>
     <string name="edit">Редактировать</string>
     <string name="search_documents">Искать документы</string>
-    <string name="share_to_arrow">Поделиться с…</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Поделиться с…</string>
     <string name="share">Поделиться</string>
     <string name="search">Поиск</string>
     <string name="display_converted_markup">Показать результат разметки</string>
@@ -64,7 +64,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="items_selected_witharg" tools:ignore="PluralsCandidate">%d элемента выбрано</string>
     <string name="hide_statusbar_at_this_view">Скрывать строку состояния в этом режиме</string>
     <string name="hide_statusbar">Скрыть строку состояния</string>
-    <string name="name">По имени</string>
+    <string name="name">Имя</string>
     <string name="url_or_path">URL/путь</string>
     <string name="insert_link">Вставить ссылку</string>
     <string name="insert_image">Вставить изображение</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Подсвечивать пробелы в конце строк с двумя и более пробелами</string>
     <string name="use_monospace_for_code">Использовать моноширный шрифт для кода</string>
     <string name="disable_code_block_highlight">Отключить подсветку блоков кода</string>
+    <string name="auto_renumber_ordered_list">Автоматическое обновление упорядоченных списков</string>
+    <string name="auto_renumber_ordered_list_slowdown">Этот параметр может повлиять на производительность приложений.</string>
     <string name="use_different_fonttype_slow_down">Использовать различные типы шрифтов. Динамическое изменение типа шрифта влияет на производительность приложения.</string>
     <string name="general">Общие</string>
     <string name="resources">Ресурсы</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Листать вниз (Page Down)</string>
     <string name="move_text_one_line_up">Переместить текст на строку вверх</string>
     <string name="move_text_one_line_down">Переместить текст на строку вниз</string>
+    <string name="start_new_line_below">Начать новую строку ниже</string>
     <string name="key_pos_1">Начало строки (Home)</string>
     <string name="key_pos_end">Конец строки (End)</string>
     <string name="key_pos_1_document">Начало документа</string>
@@ -186,8 +189,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="start_on_bottom_when_loading_document">После загрузки ставить курсор в конец документа</string>
     <string name="unordered_list_character">Символ неупорядоченного списка</string>
     <string name="character_to_start_items_of_unordered_list_with">Какой символ использовать для обозначения неупорядоченных списков</string>
-    <string name="unordered_list_char_dash">Тире (-)</string>
-    <string name="unordered_list_char_asterisk">Астериск (*)</string>
+    <string name="unordered_list_char_dash">Дефис-минус (-)</string>
+    <string name="unordered_list_char_asterisk">Звёздочка (*)</string>
     <string name="unordered_list_char_plus">Плюс (+)</string>
     <string name="filemanager_doesnot_supply_required_data__appspecific">Markor может редактировать только локальные, автономно доступные документы и не поддерживает файловые менеджеры, которые не предоставляют полный путь к файлу.</string>
     <string name="sync_to_local_folder_notice">Примечание: приложения синхронизации могут размещать файлы в пользовательских папках. Откройте их, соответственно изменяя папку документов Маркора, или в другом менеджере файлов.</string>
@@ -195,14 +198,14 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="vertical_alignment">Выравнивание по вертикали</string>
     <string name="horizontal_alignment">Выравнивание по горизонтали</string>
     <string name="default_">По умолчанию</string>
-    <string name="left">Выровнить по левому краю</string>
-    <string name="right">Выровнить по правому краю</string>
-    <string name="top">Выровнить по верхнему краю</string>
+    <string name="left">По левому краю</string>
+    <string name="right">По правому краю</string>
+    <string name="top">По верхнему краю</string>
     <string name="bottom">Подвал</string>
     <string name="center">Центр</string>
     <string name="textaction_spacing">Расстояние между операциями</string>
     <string name="horizontal_space_between_textactions">Горизонтальное пространство между текстовыми кнопками действий</string>
-    <string name="center_text">Текст по центру</string>
+    <string name="center_text">Центрировать текст</string>
     <string name="edit_text_in_center_of_screen">Начинать редактирование текста по центру</string>
     <string name="clipboard">Буфер обмена</string>
     <string name="select_existing_document">Выберите существующий документ</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Заголовок 1</string>
     <string name="heading_2">Заголовок 2</string>
     <string name="heading_3">Заголовок 3</string>
+    <string name="heading_4">Заголовок 4</string>
+    <string name="heading_5">Заголовок 5</string>
     <string name="bold">Жирный</string>
     <string name="italic">Курсив</string>
+    <string name="highlighted">Выделено</string>
     <string name="strikeout">Перечеркнутый</string>
     <string name="inline_code">Встроенный код</string>
     <string name="horizontal_line">Горизонтальная линия</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Основное</string>
     <string name="append_human_readable_uuid_to_new_tasks">Добавить пользовательский UUID к новым задачам</string>
     <string name="action_order">Порядок действий</string>
+    <string name="toggle_action_visibility">Вкл/выкл видимость действия</string>
     <string name="load_default_settings">Загрузить настройки по умолчанию</string>
     <string name="drag">Перетащите</string>
+    <string name="created">Создано</string>
     <string name="file_encryption_password">Пароль шифрования файла</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Пароль не установлен, не могу зашифровать или расшифровать.\nПерейдите в Настройки -&gt; Общие -&gt; Пароль для установки пароля.</string>
     <string name="encrypt_file_content">Шифровать содержимое файла</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Не удалось расшифровать содержимое файла. Используете ли вы неверный пароль? Файл действительно зашифрован Markors AES?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Пароль уже установлен. Установка нового пароля перезапишет существующий пароль, и вы больше не сможете получить доступ к файлам в случае, если вы забудете пароль.</string>
     <string name="code_block">Блок кода</string>
+    <string name="add_completion_date">Добавить дату завершения</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Добавить дату завершения для задач при помечении их как выполненных</string>
+    <string name="file_description_format">Формат описания файла</string>
+    <string name="file_description_format_dialog">Формат описания для каждого файла в обозревателе. Следуйте правилам SimpleDateFormat Android, добавив FS для отображения размера файла. Оставьте пустым, чтобы использовать формат по умолчанию для вашей локали.\n\nПример ввода:\nFS yyyy MMM dd hh:mm:ss aa\nФормат вывода:\n30KB 2020 Мар 20 11:24:52 PM</string>
+    <string name="loading_default_value">Загрузка значения по умолчанию</string>
+    <string name="file_settings">Настройки файла</string>
+    <string name="search_and_replace">Поиск / Замена</string>
+    <string name="search_for">Искать</string>
+    <string name="replace_with">Заменить на</string>
+    <string name="replace_once">Заменить (1)</string>
+    <string name="replace_all">Заменить все</string>
+    <string name="matches">Совпадения</string>
+    <string name="search_replace_pattern_error_message">Поиск или замена шаблона.</string>
 </resources>

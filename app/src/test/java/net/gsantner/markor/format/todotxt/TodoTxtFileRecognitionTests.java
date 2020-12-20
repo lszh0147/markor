@@ -8,7 +8,7 @@
  *     https://github.com/gsantner/opoc/#licensing
  *
 #########################################################*/
-package net.gsantner.opoc.format.todotxt;
+package net.gsantner.markor.format.todotxt;
 
 import org.junit.Test;
 
@@ -20,7 +20,7 @@ public class TodoTxtFileRecognitionTests {
 
     @Test
     public void checkTodoTxtFileRecognition() {
-        Pattern p = SttCommander.TODOTXT_FILE_PATTERN;
+        Pattern p = TodoTxtTask.TODOTXT_FILE_PATTERN;
         assertThat(ispm(p, "todo.txt")).isEqualTo(true);
         assertThat(ispm(p, "ToDO.txt")).isEqualTo(true);
         assertThat(ispm(p, "todo.archive.txt")).isEqualTo(true);

@@ -11,7 +11,6 @@
 --><!--suppress AndroidElementNotAllowed -->
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:title="@string/settings">
@@ -71,7 +70,7 @@
                 android:icon="@drawable/ic_lock_outline_black_24dp"
                 android:inputType="textVisiblePassword"
                 android:key="@string/pref_key__default_encryption_password"
-                android:title="@string/file_encryption_password"/>
+                android:title="@string/file_encryption_password" />
         </PreferenceCategory>
 
         <PreferenceCategory android:title="@string/features">
@@ -215,11 +214,23 @@
                         android:icon="@drawable/ic_palette_black_24dp"
                         android:key="@string/pref_key__editor_basic_color_scheme_sepia"
                         android:title="@string/editor_basic_color_scheme_sepia" />
-
+                    <Preference
+                        android:icon="@drawable/ic_palette_black_24dp"
+                        android:key="@string/pref_key__editor_basic_color_scheme_nord"
+                        android:title="@string/editor_basic_color_scheme_nord" />
                 </PreferenceCategory>
 
             </PreferenceScreen>
 
+        </PreferenceCategory>
+
+        <PreferenceCategory android:title="@string/file_browser">
+            <android.support.v7.preference.EditTextPreference
+                android:defaultValue="@string/empty_string"
+                android:dialogMessage="@string/file_description_format_dialog"
+                android:icon="@android:drawable/ic_menu_info_details"
+                android:key="@string/pref_key__file_description_format"
+                android:title="@string/file_description_format" />
         </PreferenceCategory>
 
     </PreferenceScreen>
@@ -403,6 +414,12 @@
                     android:icon="@drawable/ic_code_black_24dp"
                     android:key="@string/pref_key__markdown__disable_code_block_highlight"
                     android:title="@string/disable_code_block_highlight" />
+                <!-- CheckBoxPreference
+                    android:defaultValue="false"
+                    android:icon="@drawable/ic_format_list_numbered_black_24dp"
+                    android:key="@string/pref_key__markdown__auto_renumber_ordered_list"
+                    android:title="@string/auto_renumber_ordered_list"
+                    android:summary="@string/auto_renumber_ordered_list_slowdown"/ -->
             </PreferenceCategory>
             <PreferenceCategory android:title="@string/view_mode">
                 <CheckBoxPreference
@@ -431,6 +448,12 @@
             android:icon="@drawable/ic_assignment_turned_in_black_24dp"
             android:title="@string/todo_txt">
             <PreferenceCategory android:title="@string/textactions">
+                <CheckBoxPreference
+                    android:defaultValue="true"
+                    android:icon="@drawable/ic_date_range_black_24dp"
+                    android:key="@string/pref_key__todotxt__add_completion_date_for_todos"
+                    android:summary="@string/add_completion_date_for_todos_when_marking_them_as_done"
+                    android:title="@string/add_completion_date" />
                 <CheckBoxPreference
                     android:defaultValue="true"
                     android:icon="@drawable/ic_date_range_black_24dp"
@@ -478,7 +501,28 @@
 
         </PreferenceScreen>
 
-        <!-- To-Do Screen -->
+        <!-- ZimWiki screen -->
+        <PreferenceScreen
+            android:icon="@drawable/fountain_pen"
+            android:title="@string/zim_wiki">
+
+            <PreferenceCategory android:title="@string/syntax_highlighting">
+                <CheckBoxPreference
+                    android:defaultValue="false"
+                    android:icon="@drawable/ic_format_size_black_24dp"
+                    android:key="@string/pref_key__editor_zimwiki_bigger_headings"
+                    android:summary="@string/increase_text_size_of_headings_according_to_level"
+                    android:title="@string/bigger_headings" />
+            </PreferenceCategory>
+            <PreferenceCategory android:title="@string/textactions">
+                <Preference
+                    android:icon="@drawable/ic_reorder_black_24dp"
+                    android:key="@string/pref_key__zimwiki__reorder_actions"
+                    android:title="@string/action_order" />
+            </PreferenceCategory>
+        </PreferenceScreen>
+
+        <!-- Plaintext Screen -->
         <PreferenceScreen
             android:icon="@drawable/ic_text_fields_black_24dp"
             android:title="@string/plaintext">

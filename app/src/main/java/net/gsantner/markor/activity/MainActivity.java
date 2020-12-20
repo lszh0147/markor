@@ -11,8 +11,6 @@ package net.gsantner.markor.activity;
 
 import android.annotation.SuppressLint;
 import android.app.ActivityManager;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
@@ -25,7 +23,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.content.LocalBroadcastManager;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
@@ -43,7 +40,6 @@ import net.gsantner.markor.format.TextFormat;
 import net.gsantner.markor.ui.FilesystemViewerCreator;
 import net.gsantner.markor.ui.NewFileDialog;
 import net.gsantner.markor.util.ActivityUtils;
-import net.gsantner.markor.util.AppCast;
 import net.gsantner.markor.util.AppSettings;
 import net.gsantner.markor.util.PermissionChecker;
 import net.gsantner.markor.util.ShareUtil;
@@ -52,7 +48,6 @@ import net.gsantner.opoc.format.markdown.SimpleMarkdownParser;
 import net.gsantner.opoc.ui.FilesystemViewerAdapter;
 import net.gsantner.opoc.ui.FilesystemViewerData;
 import net.gsantner.opoc.ui.FilesystemViewerFragment;
-//import net.gsantner.opoc.util.AndroidSupportMeWrapper;
 
 import java.io.File;
 import java.io.IOException;
@@ -90,8 +85,6 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
     private ActivityUtils _contextUtils;
     private ShareUtil _shareUtil;
 
-    private String _cachedFolderTitle;
-
     @SuppressLint("SdCardPath")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -104,9 +97,6 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         _contextUtils.setAppLanguage(_appSettings.getLanguage());
         if (_appSettings.isOverviewStatusBarHidden()) {
             getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        }
-        if (!_appSettings.isLoadLastDirectoryAtStartup()) {
-            _appSettings.setLastOpenedDirectory(null);
         }
         setTheme(_appSettings.isDarkThemeEnabled() ? R.style.AppTheme_Dark : R.style.AppTheme_Light);
         super.onCreate(savedInstanceState);
@@ -122,7 +112,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                 SimpleMarkdownParser smp = SimpleMarkdownParser.get().setDefaultSmpFilter(SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW);
                 String html = "";
                 html += smp.parse(getString(R.string.copyright_license_text_official).replace("\n", "  \n"), "").getHtml();
-                html += "<br/><br/><br/><big><big>" + getString(R.string.changelog) + "</big></big><br/>" + smp.parse(getResources().openRawResource(R.raw.changelog), "", SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW, SimpleMarkdownParser.FILTER_CHANGELOG);
+                html += "<br/><br/><br/><big><big>" + getString(R.string.changelog) + "</big></big><br/>" + smp.parse(getResources().openRawResource(R.raw.changelog), "", SimpleMarkdownParser.FILTER_ANDROID_TEXTVIEW);
                 html += "<br/><br/><br/><big><big>" + getString(R.string.licenses) + "</big></big><br/>" + smp.parse(getResources().openRawResource(R.raw.licenses_3rd_party), "").getHtml();
                 ActivityUtils _au = new ActivityUtils(this);
                 _au.showDialogWithHtmlTextView(0, html);
@@ -200,7 +190,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
 
     @Override
     protected void onResume() {
-//        new AndroidSupportMeWrapper(this).mainOnResume();
+        //new AndroidSupportMeWrapper(this).mainOnResume();
         super.onResume();
         IS_DEBUG_ENABLED = BuildConfig.IS_TEST_BUILD || _appSettings.isDebugLogEnabled();
         if (_appSettings.isRecreateMainRequired()) {
@@ -221,45 +211,12 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                 ? R.color.dark__background : R.color.light__background);
         _viewPager.getRootView().setBackgroundColor(color);
 
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.registerReceiver(_localBroadcastReceiver, AppCast.getLocalBroadcastFilter());
-
         if (_appSettings.isKeepScreenOn()) {
             getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         } else {
             getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         }
-
-        cacheCurrentFolder();
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        LocalBroadcastManager lbm = LocalBroadcastManager.getInstance(this);
-        lbm.unregisterReceiver(_localBroadcastReceiver);
-    }
-
-    private BroadcastReceiver _localBroadcastReceiver = new BroadcastReceiver() {
-        @SuppressWarnings("unchecked")
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            String action = intent.getAction();
-            switch (action == null ? "" : action) {
-                case AppCast.VIEW_FOLDER_CHANGED.ACTION: {
-                    File currentDir = new File(intent.getStringExtra(AppCast.VIEW_FOLDER_CHANGED.EXTRA_PATH));
-                    File rootDir = _appSettings.getNotebookDirectory();
-                    if (currentDir.equals(rootDir)) {
-                        _toolbar.setTitle(R.string.app_name);
-                    } else {
-                        _toolbar.setTitle("> " + currentDir.getName());
-                    }
-                    _cachedFolderTitle = _toolbar.getTitle().toString();
-                    return;
-                }
-            }
-        }
-    };
 
     @Override
     @SuppressWarnings("unused")
@@ -313,7 +270,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                         return;
                     }
 
-                    NewFileDialog dialog = NewFileDialog.newInstance(fsFrag.getCurrentFolder(), (ok, f) -> {
+                    NewFileDialog dialog = NewFileDialog.newInstance(fsFrag.getCurrentFolder(), true, (ok, f) -> {
                         if (ok) {
                             if (f.isFile()) {
                                 DocumentActivity.launch(MainActivity.this, f, false, false, null);
@@ -337,6 +294,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         // Exit confirmed with 2xBack
         if (_doubleBackToExitPressedOnce) {
             super.onBackPressed();
+            _appSettings.setFileBrowserLastBrowsedFolder(_appSettings.getNotebookDirectory());
             return;
         }
 
@@ -360,7 +318,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         switch (item.getItemId()) {
             case R.id.nav_notebook: {
                 _viewPager.setCurrentItem(0);
-                _toolbar.setTitle(_cachedFolderTitle);
+                _toolbar.setTitle(getFileBrowserTitle());
                 return true;
             }
 
@@ -396,6 +354,15 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         }
     }
 
+    public String getFileBrowserTitle() {
+        final File file = _appSettings.getFileBrowserLastBrowsedFolder();
+        String title = getString(R.string.app_name);
+        if (!_appSettings.getNotebookDirectory().getAbsolutePath().equals(file.getAbsolutePath())) {
+            title = "> " + file.getName();
+        }
+        return title;
+    }
+
     @OnPageChange(value = R.id.main__view_pager_container, callback = OnPageChange.Callback.PAGE_SELECTED)
     public void onViewPagerPageSelected(int pos) {
         Menu menu = _bottomNav.getMenu();
@@ -403,7 +370,7 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         (_lastBottomMenuItem != null ? _lastBottomMenuItem : menu.getItem(0)).setChecked(false);
         _lastBottomMenuItem = menu.getItem(pos).setChecked(true);
         updateFabVisibility(pos == 0);
-        _toolbar.setTitle(new String[]{_cachedFolderTitle,  getString(R.string.quicknote), }[pos]);
+        _toolbar.setTitle(new String[]{getFileBrowserTitle(), getString(R.string.todo), getString(R.string.quicknote), getString(R.string.more)}[pos]);
 
         if (pos > 0 && pos < 1) {
             permc.doIfExtStoragePermissionGranted(); // cannot prevent bottom tab selection
@@ -431,8 +398,8 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
                 @Override
                 public void onFsViewerDoUiUpdate(FilesystemViewerAdapter adapter) {
                     if (adapter != null && adapter.getCurrentFolder() != null && !TextUtils.isEmpty(adapter.getCurrentFolder().getName())) {
-                        cacheCurrentFolder();
-                        _toolbar.setTitle(adapter.areItemsSelected() ? "" : _cachedFolderTitle);
+                        _appSettings.setFileBrowserLastBrowsedFolder(adapter.getCurrentFolder());
+                        _toolbar.setTitle(adapter.areItemsSelected() ? "" : getFileBrowserTitle());
                         invalidateOptionsMenu();
 
                         if (adapter.getCurrentFolder().equals(FilesystemViewerAdapter.VIRTUAL_STORAGE_FAVOURITE)) {
@@ -537,11 +504,6 @@ public class MainActivity extends AppActivityBase implements FilesystemViewerFra
         if (wrFragment != null) {
             wrFragment.clearSelection();
         }
-    }
-
-    private void cacheCurrentFolder() {
-        FilesystemViewerFragment fragment = (FilesystemViewerFragment) _viewPagerAdapter.getFragmentByTag(FilesystemViewerFragment.FRAGMENT_TAG);
-        _cachedFolderTitle = (fragment != null) ? fragment.getCurrentFolder().getName() : getResources().getString(R.string.app_name).toLowerCase();
     }
 
     private void onToolbarTitleClicked(View v) {

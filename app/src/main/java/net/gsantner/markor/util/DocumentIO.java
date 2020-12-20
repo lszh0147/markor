@@ -127,8 +127,8 @@ public class DocumentIO {
                 document.setFormat(TextFormat.FORMAT_KEYVALUE);
             } else if (TextFormat.CONVERTER_MARKDOWN.isFileOutOfThisFormat(fnlower)) {
                 document.setFormat(TextFormat.FORMAT_MARKDOWN);
-            } else if (fnlower.endsWith(".txt") || fnlower.endsWith(".zim")) {
-                document.setFormat(TextFormat.FORMAT_PLAIN);
+            } else if (TextFormat.CONVERTER_ZIMWIKI.isFileOutOfThisFormat(filePath.getAbsolutePath())) {
+                document.setFormat(TextFormat.FORMAT_ZIMWIKI);
             } else {
                 document.setFormat(TextFormat.FORMAT_PLAIN);
             }
@@ -149,7 +149,7 @@ public class DocumentIO {
     }
 
     public static synchronized boolean saveDocument(final Document document, final String text, final ShareUtil shareUtil, Context context) {
-        if (text == null || (!SAVE_IGNORE_EMTPY_NEXT_TIME && text.trim().isEmpty() && text.length() < 5)) {
+        if (text == null || (!SAVE_IGNORE_EMTPY_NEXT_TIME && text.trim().isEmpty() && text.length() < ShareUtil.MIN_OVERWRITE_LENGTH)) {
             return false;
         }
         boolean ret;

@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Seleziona cartella</string>
     <string name="edit">Modifica</string>
     <string name="search_documents">Cerca documenti</string>
-    <string name="share_to_arrow">Condividi con…</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Condividi con…</string>
     <string name="share">Condividi</string>
     <string name="search">Cerca</string>
     <string name="display_converted_markup">Mostra il markup convertito</string>
@@ -122,7 +122,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="document_browser">Navigatore dei documenti</string>
     <string name="file_browser">Esploratore dei file</string>
     <string name="set_due_date">Imposta data di scadenza</string>
-    <string name="insert_replace_date">Inserisci data</string>
+    <string name="insert_replace_date">Insert date</string>
     <string name="create_note" needed="false">Crea nota</string>
     <string name="special_documents" needed="false">Documenti speciali</string>
     <string name="keep_screen_on" needed="false">Mantieni lo schermo acceso</string>
@@ -163,7 +163,9 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending">Evidenzia la fine della linea</string>
     <string name="highlight_line_ending_if_two_or_more_spaces">Evidenzia gli spazi alla fine della linea se quest\'ultime contengono due o più spazi</string>
     <string name="use_monospace_for_code">Usa un font monospace per il codice</string>
-    <string name="disable_code_block_highlight">Disabilita evidenziazione per i blocchi di codice</string>
+    <string name="disable_code_block_highlight">Disabilita evidenziazione per blocchi di codice</string>
+    <string name="auto_renumber_ordered_list">Rinumerazione automatica delle liste ordinate</string>
+    <string name="auto_renumber_ordered_list_slowdown">Questa opzione potrebbe influire sulle prestazioni dell\'app.</string>
     <string name="use_different_fonttype_slow_down">Utilizza più tipi di font per il codice. Tale opzione può conseguire un impatto sulle prestazioni dell\'applicazione.</string>
     <string name="general">Generali</string>
     <string name="resources">Risorse</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Pagina inferiore (tasto Down)</string>
     <string name="move_text_one_line_up">Sposta il testo una riga in su</string>
     <string name="move_text_one_line_down">Sposta il testo una riga in giù</string>
+    <string name="start_new_line_below">Inizia una nuova riga sotto</string>
     <string name="key_pos_1">Inizio della linea (tasto Home)</string>
     <string name="key_pos_end">Fine della linea (tasto End)</string>
     <string name="key_pos_1_document">Inizio del documento</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Titolo 1</string>
     <string name="heading_2">Titolo 2</string>
     <string name="heading_3">Titolo 3</string>
+    <string name="heading_4">Titolo 4</string>
+    <string name="heading_5">Titolo 5</string>
     <string name="bold">Grassetto</string>
     <string name="italic">Corsivo</string>
+    <string name="highlighted">Evidenziato</string>
     <string name="strikeout">Barrato</string>
     <string name="inline_code">Codice in linea</string>
     <string name="horizontal_line">Riga orizzontale</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Essenziale</string>
     <string name="append_human_readable_uuid_to_new_tasks">Aggiungi un UUID leggibile alle nuove attività</string>
     <string name="action_order">Ordine delle azioni</string>
+    <string name="toggle_action_visibility">Attiva/Disattiva visibilità azione</string>
     <string name="load_default_settings">Carica impostazioni predefinite</string>
     <string name="drag">Trascina</string>
+    <string name="created">Creato</string>
     <string name="file_encryption_password">Password di cifratura file</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Nessuna password impostata, impossibile cifrare o decifrare.\nVai a Impostazioni -&gt; Generale -&gt; Password per impostare una password.</string>
     <string name="encrypt_file_content">Crittografa il contenuto del file</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Impossibile decifrare il contenuto del file. Hai usato una password sbagliata? Il file è veramente crittografato con la crittografia AES di Markor?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Password già impostata. Impostare una nuova password sovrascriverà la password esistente e potresti non essere più in grado di accedere ai file nel caso in cui dimentichi la password.</string>
     <string name="code_block">Blocco di codice</string>
+    <string name="add_completion_date">Aggiungi data di completamento</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Aggiungi data di completamento per i todo quando contrassegnati come completati</string>
+    <string name="file_description_format">Formato descrizione file</string>
+    <string name="file_description_format_dialog">Formato per la descrizione sotto ogni file nel file browser. Segue le regole SimpleDateFormat di Android, con l\'aggiunta di FS per mostrare le dimensioni del file. Lasciare vuoto per usare il formato predefinito per il tuo locale.\n\nEsempio di input:\nFS yyyy MMM dd hh:mm:ss aa\nFormato di output:\n30KB 2020 Mar 20 11:24:52 PM</string>
+    <string name="loading_default_value">Caricamento valore predefinito</string>
+    <string name="file_settings">Impostazioni file</string>
+    <string name="search_and_replace">Cerca / Sostituisci</string>
+    <string name="search_for">Cerca</string>
+    <string name="replace_with">Sostituisci con</string>
+    <string name="replace_once">Sostituisci (1)</string>
+    <string name="replace_all">Sostituisci tutto</string>
+    <string name="matches">Corrispondenze</string>
+    <string name="search_replace_pattern_error_message">Errore di ricerca o sostituzione.</string>
 </resources>

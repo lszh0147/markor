@@ -43,8 +43,8 @@ android {
     defaultConfig {
         resValue "string", "manifest_package_id", "net.gsantner.markor"
         applicationId "net.gsantner.markor"
-        versionName "2.2.10"
-        versionCode 113
+        versionName "2.4.1"
+        versionCode 120
 
         minSdkVersion rootProject.ext.version_minSdk
         targetSdkVersion rootProject.ext.version_compileSdk
@@ -116,15 +116,14 @@ android {
     }
 
     lintOptions {
-        disable 'MissingTranslation'
-        disable 'InvalidPackage'
+        disable 'MissingTranslation', 'InvalidPackage', 'ObsoleteLintCustomCheck', 'DefaultLocale', 'UnusedAttribute', 'VectorRaster', 'InflateParams', 'IconLocation', 'UnusedResources', 'TypographyEllipsis'
         abortOnError false
     }
 }
 
 dependencies {
     // Testing
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'junit:junit:4.13.1'
     testImplementation 'org.assertj:assertj-core:3.13.1'
 
     // Android standard libs
@@ -161,6 +160,7 @@ dependencies {
     implementation 'com.github.mertakdut:EpubParser:1.0.95'
 
     // Tool libraries
+    //noinspection AnnotationProcessorOnCompilePath
     implementation "com.jakewharton:butterknife:${version_library_butterknife}"
     implementation 'commons-io:commons-io:2.7'
     if (enable_plugin_kotlin) {

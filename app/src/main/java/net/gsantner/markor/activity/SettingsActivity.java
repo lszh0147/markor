@@ -26,6 +26,7 @@ import android.support.v7.preference.PreferenceScreen;
 import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import net.gsantner.markor.R;
 import net.gsantner.markor.ui.FilesystemViewerCreator;
@@ -39,6 +40,8 @@ import net.gsantner.opoc.preference.SharedPreferencesPropertyBackend;
 import net.gsantner.opoc.ui.FilesystemViewerData;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Locale;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -189,6 +192,11 @@ public class SettingsActivity extends AppActivityBase {
             updateSummary(R.string.pref_key__exts_to_always_open_in_this_app, _appSettings.getString(R.string.pref_key__exts_to_always_open_in_this_app, ""));
             updateSummary(R.string.pref_key__todotxt__alternative_naming_context_project,
                     getString(R.string.category_to_context_project_to_tag, getString(R.string.context), getString(R.string.category), getString(R.string.project), getString(R.string.tag)));
+            if (_appSettings.getString(R.string.pref_key__file_description_format, "").equals("")) {
+                updateSummary(R.string.pref_key__file_description_format, getString(R.string.default_));
+            } else {
+                updateSummary(R.string.pref_key__file_description_format, _appSettings.getString(R.string.pref_key__file_description_format, ""));
+            }
 
             setPreferenceVisible(R.string.pref_key__is_multi_window_enabled, Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP);
             setPreferenceVisible(R.string.pref_key__default_encryption_password, Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT);
@@ -221,8 +229,13 @@ public class SettingsActivity extends AppActivityBase {
                 activityRetVal = RESULT.RESTART_REQ;
                 _as.setRecreateMainRequired(true);
             } else if (eq(key, R.string.pref_key__app_theme)) {
-                restartActivity();
+                // Handling widget color scheme
+                WrMarkorWidgetProvider.handleWidgetScheme(
+                        getContext(),
+                        new RemoteViews(getContext().getPackageName(), R.layout.widget_layout),
+                        new AppSettings(getContext()).isDarkThemeEnabled());
                 _as.setRecreateMainRequired(true);
+                getActivity().finish();
             } else if (eq(key, R.string.pref_key__is_overview_statusbar_hidden)) {
                 activityRetVal = RESULT.RESTART_REQ;
                 _as.setRecreateMainRequired(true);
@@ -238,6 +251,13 @@ public class SettingsActivity extends AppActivityBase {
                 prefs.edit().remove(key).commit();
                 ((EditTextPreference) findPreference(key)).setText("");
                 _as.setPasswordHasBeenSetOnce(true);
+            } else if (eq(key, R.string.pref_key__file_description_format)) {
+                try {
+                    new SimpleDateFormat(prefs.getString(key, ""), Locale.getDefault());
+                } catch (IllegalArgumentException e) {
+                    Toast.makeText(getContext(), e.getLocalizedMessage() + "\n\n" + getString(R.string.loading_default_value), Toast.LENGTH_SHORT).show();
+                    prefs.edit().putString(key, "").commit();
+                }
             }
         }
 
@@ -256,7 +276,6 @@ public class SettingsActivity extends AppActivityBase {
                                 AppSettings as = AppSettings.get();
                                 as.setSaveDirectory(file.getAbsolutePath());
                                 as.setRecreateMainRequired(true);
-                                as.setLastOpenedDirectory(as.getNotebookDirectoryAsStr());
                                 doUpdatePreferences();
                             }
 
@@ -339,6 +358,11 @@ public class SettingsActivity extends AppActivityBase {
                     _as.setEditorBasicColor(false, R.color.gruvbox_fg_light, R.color.gruvbox_bg_light);
                     break;
                 }
+                case R.string.pref_key__editor_basic_color_scheme_nord: {
+                    _as.setEditorBasicColor(true, R.color.nord_fg_dark, R.color.nord_bg_dark);
+                    _as.setEditorBasicColor(false, R.color.nord_fg_light, R.color.nord_bg_light);
+                    break;
+                }
                 case R.string.pref_key__editor_basic_color_scheme_greenscale: {
                     _as.setEditorBasicColor(true, R.color.green_dark, R.color.black);
                     _as.setEditorBasicColor(false, R.color.green_light, R.color.white);
@@ -351,19 +375,14 @@ public class SettingsActivity extends AppActivityBase {
                 }
                 case R.string.pref_key__plaintext__reorder_actions:
                 case R.string.pref_key__markdown__reorder_actions:
+                case R.string.pref_key__zimwiki__reorder_actions:
                 case R.string.pref_key__todotxt__reorder_actions: {
                     Intent intent = new Intent(getActivity(), ActionOrderActivity.class);
-                    intent.putExtra(ActionOrderActivity.EXTRA_FORMAT_KEY, (keyResId == R.string.pref_key__markdown__reorder_actions) ? R.id.action_format_markdown : (keyResId == R.string.pref_key__todotxt__reorder_actions ? R.id.action_format_todotxt : R.id.action_format_plaintext));
+                    intent.putExtra(ActionOrderActivity.EXTRA_FORMAT_KEY, (keyResId == R.string.pref_key__markdown__reorder_actions) ? R.id.action_format_markdown : (keyResId == R.string.pref_key__todotxt__reorder_actions ? R.id.action_format_todotxt : (keyResId == R.string.pref_key__zimwiki__reorder_actions ? R.id.action_format_zimwiki : R.id.action_format_plaintext)));
                     startActivity(intent);
                     break;
                 }
             }
-
-            // Handling widget color scheme
-            WrMarkorWidgetProvider.handleWidgetScheme(
-                    getContext(),
-                    new RemoteViews(getContext().getPackageName(), R.layout.widget_layout),
-                    new AppSettings(getContext()).isDarkThemeEnabled());
 
             if (key.startsWith("pref_key__editor_basic_color_scheme") && !key.contains("_fg_") && !key.contains("_bg_")) {
                 _as.setRecreateMainRequired(true);

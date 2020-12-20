@@ -81,9 +81,11 @@ public class DocumentActivity extends AppActivityBase {
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP && new AppSettings(activity).isMultiWindowEnabled()) {
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_DOCUMENT | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
+        } else {
+            intent.addFlags(Intent.FLAG_ACTIVITY_SINGLE_TOP);
         }
-        activity.startActivity(intent);
         nextLaunchTransparentBg = (activity instanceof MainActivity);
+        activity.startActivity(intent);
     }
 
     public static Object[] checkIfLikelyTextfileAndGetExt(File file) {
@@ -92,7 +94,7 @@ public class DocumentActivity extends AppActivityBase {
             return new Object[]{true, ""};
         }
         String ext = fn.substring(fn.lastIndexOf("."));
-        for (String ce : new String[]{".py", ".cpp", ".h", ".js", ".html", ".css", ".java", ".qml", ".go", ".sh", ".rb", ".tex", ".json", ".xml", ".ini", ".yaml", ".yml", ".csv"}) {
+        for (String ce : new String[]{".py", ".cpp", ".h", ".js", ".html", ".css", ".java", ".qml", ".go", ".sh", ".rb", ".tex", ".json", ".xml", ".ini", ".yaml", ".yml", ".csv", ".xlf"}) {
             if (ext.equals(ce)) {
                 return new Object[]{true, ext};
             }
@@ -167,6 +169,12 @@ public class DocumentActivity extends AppActivityBase {
         handleLaunchingIntent(getIntent());
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        handleLaunchingIntent(intent);
+    }
+
     private void handleLaunchingIntent(Intent intent) {
         if (intent == null) return;
 
@@ -191,8 +199,8 @@ public class DocumentActivity extends AppActivityBase {
         }
 
         if (!intentIsSend && file != null) {
-            boolean preview = intent.getBooleanExtra(EXTRA_DO_PREVIEW, false)
-                    || _appSettings.isPreviewFirst() && file.exists() && file.isFile()
+            final boolean preview = intent.getBooleanExtra(EXTRA_DO_PREVIEW, false)
+                    || (file.exists() && file.isFile() && _appSettings.getDocumentPreviewState(file.getPath()))
                     || file.getName().startsWith("index.");
 
             showTextEditor(null, file, fileIsFolder, preview);

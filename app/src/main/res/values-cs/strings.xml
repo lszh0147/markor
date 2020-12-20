@@ -35,7 +35,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="select_folder">Vybrat složku</string>
     <string name="edit">Upravit</string>
     <string name="search_documents">Hledat v dokumentech</string>
-    <string name="share_to_arrow">Sdílet do&#8230;</string>
+    <string name="share_to_arrow" tools:ignore="TypographyEllipsis">Sdílet do&#8230;</string>
     <string name="share">Sdílet</string>
     <string name="search">Hledat</string>
     <string name="display_converted_markup">Zobrazit převedené značky</string>
@@ -122,7 +122,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="document_browser">prohlížeč dokumentů</string>
     <string name="file_browser">Správce souborů</string>
     <string name="set_due_date">Nastavit termín dokončení</string>
-    <string name="insert_replace_date">Insert date</string>
+    <string name="insert_replace_date">Vložit datum</string>
     <string name="create_note" needed="false">Vytvořit poznámku</string>
     <string name="special_documents" needed="false">Speciální dokumenty</string>
     <string name="keep_screen_on" needed="false">Udržovat obrazovku zapnutou</string>
@@ -164,6 +164,8 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="highlight_line_ending_if_two_or_more_spaces">Zvýraznit řádky, které končí dvěma nebo více mezerami</string>
     <string name="use_monospace_for_code">Použít monospace font pro kód</string>
     <string name="disable_code_block_highlight">Zakázat zvýraznění pro bloky kódu</string>
+    <string name="auto_renumber_ordered_list">Automaticky přečíslovat seznamy objednávek</string>
+    <string name="auto_renumber_ordered_list_slowdown">Tato možnost může ovlivnit výkon aplikace.</string>
     <string name="use_different_fonttype_slow_down">Používat jiný typ písma, změna dynamicky ovlivní výkon aplikace.</string>
     <string name="general">Obecné</string>
     <string name="resources">Zdroje</string>
@@ -176,6 +178,7 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="key_page_down">Page Down (Page Down)</string>
     <string name="move_text_one_line_up">Přesunout text o jeden řádek nahoru</string>
     <string name="move_text_one_line_down">Přesunout text o jeden řádek dolů</string>
+    <string name="start_new_line_below">Začít nový řádek níže</string>
     <string name="key_pos_1">Line Start (Pos Home)</string>
     <string name="key_pos_end">Line End (Pos End)</string>
     <string name="key_pos_1_document">Začátek dokumentace</string>
@@ -345,8 +348,11 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="heading_1">Nadpis 1</string>
     <string name="heading_2">Nadpis 2</string>
     <string name="heading_3">Nadpis 3</string>
+    <string name="heading_4">Nadpis 4</string>
+    <string name="heading_5">Nadpis 5</string>
     <string name="bold">Tučné</string>
     <string name="italic">Kurzíva</string>
+    <string name="highlighted">Zvýrazněné</string>
     <string name="strikeout">Přeškrtnuté</string>
     <string name="inline_code">Inline kód</string>
     <string name="horizontal_line">Vodorovná čára</string>
@@ -364,8 +370,10 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="essential">Základní</string>
     <string name="append_human_readable_uuid_to_new_tasks">Připojit okem čitelné UUID k novým úkolům</string>
     <string name="action_order">Pořadí tlačítek</string>
+    <string name="toggle_action_visibility">Přepnout viditelnost akce</string>
     <string name="load_default_settings">Načíst výchozí nastavení</string>
     <string name="drag">Přetažení</string>
+    <string name="created">Vytvořeno</string>
     <string name="file_encryption_password">Heslo pro zašifrování souboru</string>
     <string name="no_password_set_cannot_encrypt_decrypt">Není nastaveno žádné heslo, nelze šifrovat ani dešifrovat.\nPřejděte do Nastavení -&gt; Obecné -&gt; Heslo pro zašifrování souboru.</string>
     <string name="encrypt_file_content">Šifrovat obsah souboru</string>
@@ -373,4 +381,17 @@ work. If not, see <https://creativecommons.org/publicdomain/zero/1.0/>.
     <string name="could_not_decrypt_file_content_wrong_password_or_is_the_file_maybe_not_encrypted">Nelze dešifrovat obsah souboru. Použito nesprávné heslo? Je soubor opravdu šifrován pomocí AES šifrování programu Markor?</string>
     <string name="password_already_set_setting_a_new_password_will_overwrite">Heslo je již nastaveno. Zadáním nového hesla se přepíše stávající heslo a v případě, že ho zapomenete, již možná nebudete moci přistupovat k souborům.</string>
     <string name="code_block">Blok kódu</string>
+    <string name="add_completion_date">Přidat datum dokončení</string>
+    <string name="add_completion_date_for_todos_when_marking_them_as_done">Přidat datum dokončení úloh při označení jako hotové</string>
+    <string name="file_description_format">Formát popisu souboru</string>
+    <string name="file_description_format_dialog">Formát pro popis každého souboru v prohlížeči souborů. Postupujte podle pravidel SimpleDateFormat Android s přidáním FS pro zobrazení velikosti souboru. Ponechte prázdné pro použití výchozího formátu pro vaše locale.\n\nPříklad vstupu:\nFS yyyy MMM dd hh:mm:ss aa\nVýstupní formát:\n30KB 2020 bře 20 11:24:52</string>
+    <string name="loading_default_value">Načítání výchozí hodnoty</string>
+    <string name="file_settings">Nastavení souboru</string>
+    <string name="search_and_replace">Hledat / nahradit</string>
+    <string name="search_for">Hledat</string>
+    <string name="replace_with">Nahradit pomocí</string>
+    <string name="replace_once">Nahradit (1)</string>
+    <string name="replace_all">Nahradit vše</string>
+    <string name="matches">Zápasy</string>
+    <string name="search_replace_pattern_error_message">Chyba při hledání nebo nahrazení vzoru.</string>
 </resources>
