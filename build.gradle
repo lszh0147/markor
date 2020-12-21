@@ -29,12 +29,23 @@ buildscript {
         version_library_netcipher = "2.0.0-alpha1"
     }
 
+//    repositories {
+//        maven { url 'https://maven.google.com' }
+//        jcenter()
+//        maven { url "https://jitpack.io" }
+//        mavenCentral()
+//    }
     repositories {
-        maven { url 'https://maven.google.com' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        google()
         jcenter()
-        maven { url "https://jitpack.io" }
-        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
+
 
     dependencies {
         classpath "com.android.tools.build:gradle:${version_gradle_tools}"
@@ -49,13 +60,22 @@ buildscript {
 }
 
 allprojects {
+//    repositories {
+//        maven { url 'https://maven.google.com' }
+//        jcenter()
+//        maven { url "https://jitpack.io" }
+//        mavenCentral()
+//    }
     repositories {
-        maven { url 'https://maven.google.com' }
+        maven { url 'https://maven.aliyun.com/repository/central' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/gradle-plugin' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+        maven { url 'https://maven.aliyun.com/repository/public' }
+        google()
         jcenter()
-        maven { url "https://jitpack.io" }
-        mavenCentral()
+        maven { url 'https://jitpack.io' }
     }
-
     tasks.matching { task -> task.name.matches('.*generate.*Resources') }.all {
         task -> task.dependsOn copyRepoFiles
     }
